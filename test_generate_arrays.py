@@ -1,3 +1,5 @@
+# TEST FUNCTION --> JUST CREATE LIST OF ARRAYS
+
 import numpy as np
 
 min_voltage = 10

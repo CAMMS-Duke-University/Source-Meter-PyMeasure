@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tkinter/complex_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/example_background_image.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/grid_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/image_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/scrollable_frame_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/simple_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_custom_tk_v3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/CustomTkinter_logo_single.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/add_user_dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/add_user_light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/bg_gradient.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/chat_dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/chat_light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/home_dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/home_light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/image_icon_light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/test_images/large_test_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/ui_popup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tkinter/ui_reload.py" afterDir="false" />
-    </list>
+    <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

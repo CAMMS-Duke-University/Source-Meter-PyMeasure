@@ -4,7 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="" />
+    <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Label.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Label_List.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console_user_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/console_user_interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console_user_interface_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/console_user_interface_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_tk_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_tkinter/test_tk_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_tk_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_tkinter/test_tk_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_tk_2_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_tkinter/test_tk_2_v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_tk_2_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_tkinter/test_tk_2_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/complex_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/complex_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/example_background_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/example_background_image.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/grid_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/grid_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/image_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/image_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/scrollable_frame_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/scrollable_frame_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/simple_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/simple_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_custom_tk_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_custom_tk_v2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_custom_tk_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/CustomTkinter_logo_single.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/CustomTkinter_logo_single.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/add_user_dark.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/add_user_dark.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/add_user_light.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/add_user_light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/bg_gradient.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/bg_gradient.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/chat_dark.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/chat_dark.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/chat_light.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/chat_light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/home_dark.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/home_dark.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/home_light.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/home_light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/image_icon_light.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/image_icon_light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/test_images/large_test_image.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/test_images/large_test_image.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/ui_popup.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/ui_popup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tkinter/ui_reload.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Window.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,8 +71,13 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.ui_reload">
-    <configuration name="complex_example" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples_tkinter" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.ui_reload_Label_List">
+    <configuration name="console_user_interface" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Source-Meter-PyMeasure" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -49,74 +85,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tkinter" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tkinter/complex_example.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="grid_example" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Source-Meter-PyMeasure" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tkinter" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tkinter/grid_example.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test_custom_tk_v3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Source-Meter-PyMeasure" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tkinter" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tkinter/test_custom_tk_v3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ui_popup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Source-Meter-PyMeasure" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tkinter" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tkinter/ui_popup.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/console_user_interface.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -146,13 +119,76 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="ui_reload_Label" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Source-Meter-PyMeasure" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples_custom_tkinter" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Label.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ui_reload_Label_List" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Source-Meter-PyMeasure" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples_custom_tkinter" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Label_List.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ui_reload_Window" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Source-Meter-PyMeasure" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples_custom_tkinter" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Window.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ui_reload_Label_List" />
+        <item itemvalue="Python.ui_reload_Label" />
+        <item itemvalue="Python.console_user_interface" />
+        <item itemvalue="Python.ui_reload_Window" />
         <item itemvalue="Python.ui_reload" />
-        <item itemvalue="Python.ui_popup" />
-        <item itemvalue="Python.complex_example" />
-        <item itemvalue="Python.grid_example" />
-        <item itemvalue="Python.test_custom_tk_v3" />
       </list>
     </recent_temporary>
   </component>

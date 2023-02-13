@@ -2,7 +2,7 @@
 #                   WITH DEFAULT ENTRY values
 #                   PRINTS ON TERMINAL THE ENTRY VALUES
 
-import tkinter as tk
+import examples_custom_tkinter as tk
 
 def fetch(entries):
     for entry in entries:

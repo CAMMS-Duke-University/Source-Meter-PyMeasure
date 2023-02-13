@@ -1,6 +1,6 @@
 # TEST FUNCTION --> JUST INSERT ONE ENTRIY WITH AN ACTION TO CHANGE THE LABEL DINAMIC
 
-import tkinter as tk
+import examples_custom_tkinter as tk
 
 
 class MyGUI:

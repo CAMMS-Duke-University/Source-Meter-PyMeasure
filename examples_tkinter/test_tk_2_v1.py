@@ -1,6 +1,6 @@
 # TEST FUNCTION --> INSERT ENTRIES BASED ON fields length and prints the entry values
 
-import tkinter as tk
+import examples_custom_tkinter as tk
 
 fields = 'Label_1', 'Label_2', 'Label_3', 'Label_4',  'Label_5'
 

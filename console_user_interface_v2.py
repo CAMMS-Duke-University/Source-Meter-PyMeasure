@@ -1,5 +1,5 @@
 from keithley_functions import * # importing  all the Keithley libs
-import tkinter as tk
+import examples_custom_tkinter as tk
 import customtkinter as ctk
 import pandas as pd
 

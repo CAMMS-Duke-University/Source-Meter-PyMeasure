@@ -1,6 +1,6 @@
 # TEST FUNCTION --> JUST INSERT 2 ENTRIES NO ACTION
 
-from tkinter import *
+from examples_custom_tkinter import *
 
 class LabeledEntry(Frame):
     def __init__(self, parent, *args, **kargs):

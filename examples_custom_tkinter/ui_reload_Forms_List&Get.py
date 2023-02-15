@@ -63,31 +63,33 @@ class App(customtkinter.CTk):
         # Label List Frame
         self.text_frame_list = customtkinter.CTkFrame(self, width=140, corner_radius=0)
         self.text_frame_list.grid(row=1, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
-        label_fields = ["Field 0","Field 1","Field 2"]
-        entries_fields = ["0", "1", "2"]
+        label_fields = ["Field 1","Field 2"]
+        entries_fields = ["1", "2"]
         self.fields = makeform(self.text_frame_list, label_fields, entries_fields)
+        self.enty_button = customtkinter.CTkButton(master=self.text_frame_list, command=self.update_label)
+        self.enty_button.grid(row=1, column=2, pady=10, padx=20, sticky="n")
 
     def mode_event(self, new_appearance_mode: str):
-        #print("Pointer:",self.status_label)
         current_value_string = self.status_label.cget("text")
-        #print("Current Value:",current_value_string)
         self.status_label.configure(text=new_appearance_mode)
         new_value_string = self.status_label.cget("text")
         print("-----New Value:",new_value_string)
-        label_fields = ["0","1","2","3","4"]
-        entries_fields = ["0", "1", "2","3","4"]
         number_of_entries = int(new_value_string[1])
         label_fields = ['Label ' + str(x) for x in range(1, number_of_entries + 1)]
         entries_fields = ['Entry ' + str(x) for x in range(1, number_of_entries + 1)]
-        #self.text_frame_list.configure(require_redraw=True)
         self.text_frame_list.destroy()
-
         self.text_frame_list = customtkinter.CTkFrame(self, width=140, corner_radius=0)
         self.text_frame_list.grid(row=1, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
         self.fields = makeform(self.text_frame_list, label_fields, entries_fields)
-        #for field in self.fields:
-        #    update_label(field,new_appearance_mode)
+        self.enty_button = customtkinter.CTkButton(master=self.text_frame_list, command=self.update_label)
+        self.enty_button.grid(row=1, column=2, pady=10, padx=20, sticky="n")
 
+    def update_label(self):
+        current_fields =  self.fields
+        for field in current_fields:
+            label = field[0].cget("text")
+            entry = field[1].get()
+            print("------", label,"-->",entry)
 
 if __name__ == "__main__":
     app = App()

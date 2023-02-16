@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Forms_List&amp;Get.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Forms_CheckBox.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Forms_List.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Forms_List.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console_user_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/console_user_interface_static.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console_user_interface_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/console_user_interface_dynamic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,21 +36,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jacobkritikos/Github/Source-Meter-PyMeasure&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/jacobkritikos/Github/Source-Meter-PyMeasure",
+    "settings.editor.selected.configurable": "configurable.group.editor"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/examples_tkinter" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ui_reload_Window">
+  <component name="RunManager" selected="Python.console_user_interface_dynamic">
     <configuration name="complex_example" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Source-Meter-PyMeasure" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -71,7 +72,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="console_user_interface_v2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="console_user_interface_dynamic" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Source-Meter-PyMeasure" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -83,7 +84,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/console_user_interface_v2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/console_user_interface_dynamic.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -92,7 +93,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ui_reload_Entry_List" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="ui_reload_Forms_CheckBox" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Source-Meter-PyMeasure" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -104,7 +105,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Entry_List.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Forms_CheckBox.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -157,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ui_reload_Window" />
-        <item itemvalue="Python.complex_example" />
+        <item itemvalue="Python.console_user_interface_dynamic" />
         <item itemvalue="Python.ui_reload_Forms_List&amp;Get" />
-        <item itemvalue="Python.console_user_interface_v2" />
-        <item itemvalue="Python.ui_reload_Entry_List" />
+        <item itemvalue="Python.ui_reload_Forms_CheckBox" />
+        <item itemvalue="Python.complex_example" />
+        <item itemvalue="Python.ui_reload_Window" />
       </list>
     </recent_temporary>
   </component>

@@ -166,7 +166,10 @@ class App(customtkinter.CTk):
         for field in current_fields:
             label = field[0].cget("text")
             entry = field[1].get()
-            print("------", label, "-->", entry)
+            print("---(Lable 1)---", label, "-->", entry)
+            label = field[2].cget("text")
+            entry = field[3].get()
+            print("---(Lable 2)---", label, "-->", entry)
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)

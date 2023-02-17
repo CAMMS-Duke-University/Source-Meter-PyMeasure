@@ -6,24 +6,6 @@ import customtkinter
 customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
-def makeform(self_frame, label_fields, entries_fields):
-    fields = []
-    for i in range(0, len(label_fields)):
-        field = label_fields[i]
-        entry = entries_fields[i]
-        # Text Frame
-        text_frame_list_item = customtkinter.CTkFrame(self_frame)
-        text_frame_list_item.grid(row=i+1, column=1)
-        # Label Will be updated
-        status_label_list_item = customtkinter.CTkLabel(text_frame_list_item, text=field)
-        status_label_list_item.grid()
-        status_entry_list_item = customtkinter.CTkEntry(text_frame_list_item)
-        status_entry_list_item.delete(0)
-        status_entry_list_item.insert(0,entry)
-        status_entry_list_item.grid()
-        fields.append((status_label_list_item,status_entry_list_item))
-    return fields
-
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()

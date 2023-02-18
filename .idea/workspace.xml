@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/examples_custom_tkinter/scrollable_complex_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v3_console_user_interface_dynamic_array.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v4_console_user_interface_dynamic_array_checkbox.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v5_console_user_interface_dynamic_array_checkbox_global_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console_user_interface_dynamic.py" beforeDir="false" afterPath="$PROJECT_DIR$/v2_console_user_interface_dynamic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console_user_interface_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/v1_console_user_interface_static.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Forms_CheckBox.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples_custom_tkinter/ui_reload_Forms_CheckBox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v1_console_user_interface_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/v1_console_UI_static.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2_console_user_interface_dynamic.py" beforeDir="false" afterPath="$PROJECT_DIR$/v2_console_UI_dynamic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v3_console_user_interface_dynamic_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/v3_console_UI_dynamic_Array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v4_console_user_interface_dynamic_array_checkbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/v4_console_UI_dynamic_Array_OptionMenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v5_console_user_interface_dynamic_array_checkbox_global_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/v5_console_UI_dynamic_Dict_OptionMenu.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,28 +55,7 @@
       <recent name="$PROJECT_DIR$/examples_tkinter" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.v4_console_user_interface_dynamic_array_checkbox">
-    <configuration name="scrollable_frame_example" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Source-Meter-PyMeasure" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples_custom_tkinter" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples_custom_tkinter/scrollable_frame_example.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.v5_console_UI_dynamic_Dict_OptionMenu">
     <configuration name="ui_reload_Forms_CheckBox" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Source-Meter-PyMeasure" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -100,7 +77,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="v3_console_user_interface_dynamic_array" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="v3_console_UI_dynamic_Array" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Source-Meter-PyMeasure" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -112,7 +89,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/v3_console_user_interface_dynamic_array.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/v3_console_UI_dynamic_Array.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -121,7 +98,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="v4_console_user_interface_dynamic_array_checkbox" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="v4_console_UI_dynamic_Array_OptionMenu" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Source-Meter-PyMeasure" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -133,7 +110,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/v4_console_user_interface_dynamic_array_checkbox.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/v4_console_UI_dynamic_Array_OptionMenu.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -163,13 +140,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="v5_console_UI_dynamic_Dict_OptionMenu" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Source-Meter-PyMeasure" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/v5_console_UI_dynamic_Dict_OptionMenu.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.v4_console_user_interface_dynamic_array_checkbox" />
+        <item itemvalue="Python.v5_console_UI_dynamic_Dict_OptionMenu" />
+        <item itemvalue="Python.v4_console_UI_dynamic_Array_OptionMenu" />
         <item itemvalue="Python.ui_reload_Forms_CheckBox" />
-        <item itemvalue="Python.v3_console_user_interface_dynamic_array" />
+        <item itemvalue="Python.v3_console_UI_dynamic_Array" />
         <item itemvalue="Python.v4_console_user_interface_dynamic_array_scrollbar" />
-        <item itemvalue="Python.scrollable_frame_example" />
       </list>
     </recent_temporary>
   </component>

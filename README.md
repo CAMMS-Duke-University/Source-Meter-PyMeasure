@@ -1,8 +1,11 @@
 # Source-Meter-PyMeasure
 Keithley SourceMeter using PyMeasure
 
-- `console_user_interface.py` is the initial program
-- `current_to_voltage.py` apples a Current and measures a Voltage
-- `voltage_to_current.py` apples a Voltage and measures a Current
+**Run the program named `console_UI.py`**
 
-Additional there are some draft/test codes ignore them.
+[![ui-v1](img/ui-v1.jpg)](https://www.youtube.com/watch?v=Kq4zSf2alCM)
+
+There are additional programs and different version:
+- There are `Tkinter` & `Custom` Tkinter examples for future use
+- There are different versions of the `console_UI.py` as we progressed. 
+  - Every version is executable. 

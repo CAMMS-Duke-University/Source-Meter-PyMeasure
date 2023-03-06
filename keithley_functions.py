@@ -124,7 +124,7 @@ def Task_0_array(instruments):
     for instrument in instruments:
         print(instrument)
         print("Instrument ID: ", instrument["Instrument"])
-        sourcemeter = Instrument_Connection(instrument_name=instrument['Port Num'],
+        sourcemeter = Instrument_Connection(instrument_name=instrument['Port Number'],
                                             apply_voltage_range=None,
                                             apply_compliance_current=10e-4,
                                             apply_nplc=1,
@@ -132,13 +132,13 @@ def Task_0_array(instruments):
                                             apply_auto_range=True)
         instrument_optionmenu = parameters_instrument['OptionMenu']
         if instrument_optionmenu == 'Apply Incremental Voltage':
-            voltages_sourcemeter = np.linspace(start=instrument['Min Volt Set'],
-                                               strop=instrument['Max Volt Set'],
-                                               num=instrument['Msnts Nums'])
+            voltages_sourcemeter = np.linspace(start=instrument['Min Voltage (Volts)'],
+                                               strop=instrument['Max Voltage (Volts)'],
+                                               num=instrument['Measurement Number'])
         if instrument_optionmenu == 'Apply Steady Voltage':
-            voltages_sourcemeter = np.linspace(start=instrument['Steady Volt Set'],
-                                               strop=instrument['Steady Volt Set'],
-                                               num=instrument['Msnts Nums'])
+            voltages_sourcemeter = np.linspace(start=instrument['Steady Voltage (Volts)'],
+                                               strop=instrument['Steady Voltage (Volts)'],
+                                               num=instrument['Measurement Number'])
         sourcemeters.append((sourcemeter,voltages_sourcemeter))
 
     currents = []

@@ -1,8 +1,7 @@
-from keithley_functions import * # importing  all the Keithley libs
+from keithley_functions import *  # importing  all the Keithley libs
 import tkinter
 import tkinter.messagebox
 import customtkinter
-
 
 customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -31,7 +30,7 @@ class App(customtkinter.CTk):
         # -----------------------------------------------------Window---------------------------------------------------
         # configure window
         self.title("Instruments Operation Control")
-        self.geometry(f"{900}x{780}")
+        self.geometry(f"{1000}x{780}")
         # configure grid layout (4x4)
         self.grid_columnconfigure(1, weight=1)
         self.grid_columnconfigure((2, 3), weight=0)
@@ -42,7 +41,8 @@ class App(customtkinter.CTk):
         self.sidebar_frame.grid(row=0, column=0, rowspan=4, sticky="nsew")
         self.sidebar_frame.grid_rowconfigure(4, weight=1)
         # Side Bar --> Label
-        self.sidebar_option_menu_label = customtkinter.CTkLabel(self.sidebar_frame, text="Select Number of GPIBs:",
+        self.sidebar_option_menu_label = customtkinter.CTkLabel(self.sidebar_frame,
+                                                                text="Select Number of Instruments:",
                                                                 anchor="w")
         self.sidebar_option_menu_label.grid(row=0, column=0, padx=20, pady=(10, 0))
         # Side Bar --> Option Menu
@@ -73,7 +73,8 @@ class App(customtkinter.CTk):
         self.main_frame.grid(row=0, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
         self.main_frame.grid_rowconfigure(4, weight=1)
         # Main Frame --> Labels Will be updated
-        self.status_label_title = customtkinter.CTkLabel(self.main_frame, text="Number of GPIBs:", font=("Calibre", 18))
+        self.status_label_title = customtkinter.CTkLabel(self.main_frame, text="Number of Instruments:",
+                                                         font=("Calibre", 18))
         self.status_label_title.grid(row=0, column=0, padx=5, pady=(10, 0))
         self.status_label_value = customtkinter.CTkLabel(self.main_frame, text=self.init_sidebar_value,
                                                          font=("Calibre", 18))
@@ -125,7 +126,10 @@ class App(customtkinter.CTk):
         self.single_frame_mode = customtkinter.CTkFrame(self.single_frame, width=120)
         self.single_frame_mode.grid(row=1, column=0, padx=(5, 5), pady=(0, 5))
         single_frame_mode_values = ["Apply Incremental Voltage",
-                                    "Apply Steady Voltage"]
+                                    "Apply Steady Voltage",
+                                    "Apply Incremental Current",
+                                    "Apply Steady Current"
+                                    ]
         self.single_frame_option_menu = customtkinter.CTkOptionMenu(self.single_frame_mode,
                                                                     values=single_frame_mode_values,
                                                                     command=self.single_frame_mode_event)
@@ -159,17 +163,17 @@ class App(customtkinter.CTk):
             self.group_data.append({
                 "Instrument": str(i + 1),
                 "OptionMenu": "Apply Incremental Voltage",
-                "Port Num": "GPIB::" + str(i),
-                "Msnts Nums": str(i + 10),
-                "Min Volt Set": str(i),
-                "Max Volt Set": str(i + 10)
+                "Port Number": "GPIB::" + str(i),
+                "Measurement Number": str(i + 10),
+                "Min Voltage (Volts)": str(i),
+                "Max Voltage (Volts)": str(i + 10)
             })
         self.group_frame.destroy()
         self.generate_group_frame()
 
     # ------------------------------- This Updates the Single GPIB Operation--------------------------------------------
     def single_frame_mode_event(self, single_frame_mode: str):
-        #-------------------------------------------------------------------------------------------------------------------------
+        # -------------------------------------------------------------------------------------------------------------------------
         updated_group_data = []
         # ---------- Generate the new data based on the Intput from TK
         for single_group_data_tk in self.group_data_tk:
@@ -184,33 +188,50 @@ class App(customtkinter.CTk):
             print("Instrument: ", i + 1)
             previous_single_data = self.group_data[i]
             updated_single_data = updated_group_data[i]
-            if previous_single_data["OptionMenu"]!=updated_single_data["OptionMenu"]:
+            if previous_single_data["OptionMenu"] != updated_single_data["OptionMenu"]:
                 print("CHANGED")
                 if updated_single_data["OptionMenu"] == "Apply Steady Voltage":
                     new_single_group_data = {
-                            "Instrument": previous_single_data["Instrument"],
-                            "OptionMenu": updated_single_data["OptionMenu"],
-                            "Port Num": updated_single_data["Port Num"],
-                            "Msnts Nums": updated_single_data["Msnts Nums"],
-                            "Steady Volt Set": str(10),
+                        "Instrument": previous_single_data["Instrument"],
+                        "OptionMenu": updated_single_data["OptionMenu"],
+                        "Port Number": updated_single_data["Port Number"],
+                        "Measurement Number": updated_single_data["Measurement Number"],
+                        "Steady Voltage (Volts)": str(10),
                     }
                 if updated_single_data["OptionMenu"] == "Apply Incremental Voltage":
                     new_single_group_data = {
-                            "Instrument": previous_single_data["Instrument"],
-                            "OptionMenu": updated_single_data["OptionMenu"],
-                            "Port Num": updated_single_data["Port Num"],
-                            "Msnts Nums": updated_single_data["Msnts Nums"],
-                            "Min Volt Set": str(1),
-                            "Max Volt Set": str(10)
+                        "Instrument": previous_single_data["Instrument"],
+                        "OptionMenu": updated_single_data["OptionMenu"],
+                        "Port Number": updated_single_data["Port Number"],
+                        "Measurement Number": updated_single_data["MMeasurement Number"],
+                        "Min Voltage (Volts)": str(1),
+                        "Max Voltage (Volts)": str(10)
+                    }
+                if updated_single_data["OptionMenu"] == "Apply Steady Current":
+                    new_single_group_data = {
+                        "Instrument": previous_single_data["Instrument"],
+                        "OptionMenu": updated_single_data["OptionMenu"],
+                        "Port Number": updated_single_data["Port Number"],
+                        "Measurement Number": updated_single_data["Measurement Number"],
+                        "Steady Current (Amps)": str(10),
+                    }
+                if updated_single_data["OptionMenu"] == "Apply Incremental Current":
+                    new_single_group_data = {
+                        "Instrument": previous_single_data["Instrument"],
+                        "OptionMenu": updated_single_data["OptionMenu"],
+                        "Port Number": updated_single_data["Port Number"],
+                        "Measurement Number": updated_single_data["Measurement Number"],
+                        "Min Current (Amps)": str(1),
+                        "Max Current (Amps)": str(10)
                     }
                 new_group_data.append(new_single_group_data)
-            else: #<-------- if there is no change at the OptionMenu we keep it the same (previous)
+            else:  # <-------- if there is no change at the OptionMenu we keep it the same (previous)
                 new_group_data.append(previous_single_data)
 
-            #print("Before:", previous_single_data)
+            # print("Before:", previous_single_data)
             print("   New:", new_group_data)
         self.group_data = new_group_data
-        #-------------------------------------------------------------------------------------------------------------------------
+        # -------------------------------------------------------------------------------------------------------------------------
         self.group_frame.destroy()
         self.generate_group_frame()
 
@@ -231,10 +252,10 @@ class App(customtkinter.CTk):
         task_result = Task_0_array(self.group_data)
         print(task_result)
 
-
     def change_scaling_event(self, new_scaling: str):
         new_scaling_float = int(new_scaling.replace("%", "")) / 100
         customtkinter.set_widget_scaling(new_scaling_float)
+
 
 if __name__ == "__main__":
     app = App()

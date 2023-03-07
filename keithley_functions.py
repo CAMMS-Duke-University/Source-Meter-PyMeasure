@@ -116,8 +116,8 @@ def Task_1_array(entries):
 def Task_0_array(instruments):
     print("\n")
     for instrument in instruments:
+        print("Instument-----------------")
         print(instrument)
-    return "received from function"
 
     sourcemeters = []
     # ------------------- We setup the Sourcemeter Instruments AND their process via the input data we will apply
@@ -130,20 +130,21 @@ def Task_0_array(instruments):
                                             apply_nplc=1,
                                             apply_current_range=0.000105,
                                             apply_auto_range=True)
-        instrument_optionmenu = parameters_instrument['OptionMenu']
+        instrument_optionmenu = instrument['OptionMenu']
         if instrument_optionmenu == 'Apply Incremental Voltage':
-            voltages_sourcemeter = np.linspace(start=instrument['Min Voltage (Volts)'],
-                                               strop=instrument['Max Voltage (Volts)'],
-                                               num=instrument['Measurement Number'])
+            voltages_sourcemeter = np.linspace(start=int(instrument['Min Voltage (Volts)']),
+                                               stop=int(instrument['Max Voltage (Volts)']),
+                                               num=int(instrument['Measurement Number']))
         if instrument_optionmenu == 'Apply Steady Voltage':
-            voltages_sourcemeter = np.linspace(start=instrument['Steady Voltage (Volts)'],
-                                               strop=instrument['Steady Voltage (Volts)'],
-                                               num=instrument['Measurement Number'])
+            voltages_sourcemeter = np.linspace(start=int(instrument['Steady Voltage (Volts)']),
+                                               stop=int(instrument['Steady Voltage (Volts)']),
+                                               num=int(instrument['Measurement Number']))
         sourcemeters.append((sourcemeter,voltages_sourcemeter))
 
     currents = []
     for sourcemeter in sourcemeters:
         current = Measure_List_Values_Current(sourcemeter[0], sourcemeter[1])
         currents.append(current)
-
-    return currents
+    print(currents)
+    print("-----------\n")
+    return ("GOOD!")

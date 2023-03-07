@@ -10,7 +10,7 @@ def fetch(entries):
         value  = entry[1].get()
         entry_values.append(value)
         print('%s: "%s"' % (field, value))
-    print("------")
+    print("------!-")
     currents_A, currents_B = Task_1_array(entry_values)
     #currents_A, currents_B = Task_1 (entry_values)
     print(currents_A, currents_B)
@@ -56,7 +56,7 @@ if __name__ == '__main__':
                 'AC Max. Voltage']
     entry_fields = [
                 "GPIB::3",
-                "GPIB::6",
+                "GPIB::7",
                 None,
                 10e-4,
                 1,

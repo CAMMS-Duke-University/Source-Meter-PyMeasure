@@ -115,7 +115,7 @@ class App(customtkinter.CTk):
         self.single_frame_title = customtkinter.CTkFrame(self.single_frame)
         self.single_frame_title.grid(row=0, column=0, padx=(5, 5), pady=(5, 5))
         self.single_frame_title_text = customtkinter.CTkLabel(self.single_frame_title, font=("Calibre", 16),
-                                                              text="Instrument")
+                                                              text="Instrument ")
         self.single_frame_title_text.grid(row=0, column=0, padx=(5, 1))
         self.single_frame_title_val = customtkinter.CTkLabel(self.single_frame_title, font=("Calibre", 16),
                                                              text=self.single_frame_data.get("Instrument"))

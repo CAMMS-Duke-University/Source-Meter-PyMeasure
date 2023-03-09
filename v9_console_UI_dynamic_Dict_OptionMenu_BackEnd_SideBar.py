@@ -29,10 +29,16 @@ class App(customtkinter.CTk):
         self.single_frame_data = None
         self.single_frame = None
         self.single_frame_entry = None
+        self.apply_voltage_range = None  # value (in Volts) or None
+        self.apply_compliance_current = 10e-4  # A floating point property that controls the compliance current in Amps
+        self.apply_nplc = 1  # Number of power line cycles (NPLC) from 0.01 to 10
+        self.apply_current_range = 0.000105  # in Amps; Upper limit of current in Amps, from -1.05 A
+        self.apply_auto_range = True  # Enables auto_range if True, else uses the set resistance
+
         # -----------------------------------------------------Window---------------------------------------------------
         # configure window
         self.title("Instruments Operation Control")
-        self.geometry(f"{1000}x{780}")
+        self.geometry(f"{800}x{680}")
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
         # --------------------------------------------------Side Bar----------------------------------------------------
@@ -98,19 +104,48 @@ class App(customtkinter.CTk):
         self.scaling_option_menu.set("100%")
         self.scaling_option_menu.grid(row=10, column=0, padx=20, pady=(10, 20))
 
-        # ------------------------------------------------Main Frame----------------------------------------------------
-        # Create Main Frame with widgets
-        self.main_frame = customtkinter.CTkScrollableFrame(self, width=180, height=400, corner_radius=0)
-        self.main_frame.grid(row=0, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
-        self.main_frame.grid_rowconfigure(4, weight=1)
-        # Main Frame --> Labels Will be updated
-        self.status_label_title = customtkinter.CTkLabel(self.main_frame, text="Number of Instruments:",
+        # --------------------------------------- Top Widget - Main Frame ----------------------------------------------
+        # Create the Top Main Frame
+        self.top_main_frame = customtkinter.CTkScrollableFrame(self, height=200, corner_radius=0)
+        self.top_main_frame.grid(row=0, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
+        # Top Frame --> Labels Will be updated
+        # Top Widget --> Instrument status ---------------------------------------------------------------
+        self.status_label_title = customtkinter.CTkLabel(self.top_main_frame, text="Number of Instruments Selected:",
                                                          font=("Calibre", 18))
         self.status_label_title.grid(row=0, column=0, padx=5, pady=(10, 0))
-        self.status_label_value = customtkinter.CTkLabel(self.main_frame, text=self.init_sidebar_value,
-                                                         font=("Calibre", 18))
+        self.status_label_value = customtkinter.CTkLabel(self.top_main_frame, text=self.init_sidebar_value,
+                                                         width=40,
+                                                         corner_radius=5,
+                                                         font=("Calibre", 18),
+                                                         fg_color="#1F6AA5")
         self.status_label_value.grid(row=0, column=1, pady=(10, 0))
+        # Top Widget --> Default Values ---------------------------------------------------------------
+        self.top_main_instrumentation = customtkinter.CTkScrollableFrame(self.top_main_frame)
+        self.top_main_instrumentation.grid(row=1, column=0)
 
+
+        curr_row_counter = 0
+        curr_label = "Test"
+        curr_entry = "Test 2"
+        self.top_main_label_1 = customtkinter.CTkLabel(self.top_main_instrumentation, text=curr_label)
+        self.top_main_label_1.grid(row=curr_row_counter, column=0, sticky=tkinter.W, pady=2, padx=(5, 5))
+        self.top_main_entry_1 = customtkinter.CTkEntry(self.top_main_instrumentation)
+        self.top_main_entry_1.delete(0)
+        self.top_main_entry_1.insert(0, curr_entry)
+        self.top_main_entry_1.grid(row=curr_row_counter, column=1, pady=2, padx=(5, 5))
+
+        #self.apply_voltage_range = None  # value (in Volts) or None
+        #self.apply_compliance_current = 10e-4  # A floating point property that controls the compliance current in Amps
+        #self.apply_nplc = 1  # Number of power line cycles (NPLC) from 0.01 to 10
+        #self.apply_current_range = 0.000105  # in Amps; Upper limit of current in Amps, from -1.05 A
+        #self.apply_auto_range = True  # Enables auto_range if True, else uses the set resistance
+
+
+        # --------------------------------------- Core Widget - Main Frame ---------------------------------------------
+        # Create the Core Main Frame with widgets
+        self.main_frame = customtkinter.CTkScrollableFrame(self, height=400, corner_radius=0)
+        self.main_frame.grid(row=1, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
+        self.main_frame.grid_rowconfigure(4, weight=1)
         # Main Frame --> Generate Individual Frame Data for each GPIB
         # "group_data" refer to all the data which will be completed and will be sent to the GPIBs
         # "group_data_tk" refer to all the tk data relevant to the group_data which operate the UI

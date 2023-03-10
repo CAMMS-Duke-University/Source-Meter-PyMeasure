@@ -4,6 +4,7 @@ from pymeasure.instruments.keithley import Keithley2400  # Import the instrument
 import numpy as np
 import pandas as pd
 from time import sleep
+from pymeasure.instruments import list_resources
 
 
 # The following function connects and configure the scientific instrument
@@ -151,5 +152,11 @@ def Task_0_array(instruments):
 
 
 def Get_Connected_Instruments():
-    current_instuments = ["GPIB::1", "GPIB::2"]
-    return current_instuments
+    connected_instument_names = []
+    for list_item in list_resources():
+        connected_instument_names.append(list_item)
+    connected_instument_names.pop(0)
+    if (len(connected_instument_names)==0):
+        return("NO Instrument is connected")
+    else:
+        return(connected_instument_names)

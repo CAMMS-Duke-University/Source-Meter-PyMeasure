@@ -14,8 +14,7 @@ def change_appearance_mode_event(new_appearance_mode: str):
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.instruments_search = "N/A\n" \
-                                  "Line 1\n"
+        self.instruments_search = "N/A"
         self.init_sidebar_value = "1"  # <---------------------------- what is the initial State
         self.group_frame = None
         self.entry_button = None
@@ -62,7 +61,7 @@ class App(customtkinter.CTk):
         # ------------- Side Bar > Search Instruments Frame ---> Button
         self.sidebar_search_instruments_button = customtkinter.CTkButton(self.sidebar_instruments_search_frame,
                                                                          width=70,
-                                                                         # command=self.update_data_event,
+                                                                         command=self.search_instrument_event,
                                                                          text="Search")
         self.sidebar_search_instruments_button.grid(row=0, column=1, padx=1, pady=(10, 0))
         # ------------- Side Bar > Search Instruments Frame ---> Label Value
@@ -313,6 +312,10 @@ class App(customtkinter.CTk):
         self.group_data = updated_group_data
         self.measure_event()  # <--- a list of dictionaries, each dictornery is an instrument
         # print(self.group_data)
+
+    def search_instrument_event(self):
+        get_connected_instuments = Get_Connected_Instruments()
+        self.sidebar_search_instruments_label_value.configure(text=get_connected_instuments)
 
     def measure_event(self):
         task_result = Task_0_array(self.group_data)

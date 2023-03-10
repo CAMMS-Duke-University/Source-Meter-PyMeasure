@@ -139,7 +139,7 @@ def Task_0_array(instruments):
             voltages_sourcemeter = np.linspace(start=int(instrument['Steady Voltage (Volts)']),
                                                stop=int(instrument['Steady Voltage (Volts)']),
                                                num=int(instrument['Measurement Number']))
-        sourcemeters.append((sourcemeter,voltages_sourcemeter))
+        sourcemeters.append((sourcemeter, voltages_sourcemeter))
 
     currents = []
     for sourcemeter in sourcemeters:
@@ -148,3 +148,8 @@ def Task_0_array(instruments):
     print(currents)
     print("-----------\n")
     return ("GOOD!")
+
+
+def Get_Connected_Instruments():
+    current_instuments = ["GPIB::1", "GPIB::2"]
+    return current_instuments

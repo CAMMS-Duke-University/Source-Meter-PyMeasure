@@ -6,6 +6,13 @@ import pandas as pd
 from time import sleep
 from pymeasure.instruments import list_resources
 
+global apply_voltage_range_val
+global apply_compliance_current_val
+global apply_nplc_val
+global apply_current_range_val
+global apply_auto_range_val
+
+global instruments_setup_values
 
 # The following function connects and configure the scientific instrument
 # returns the handler of this instrument as to use for start measuring voltage or current
@@ -116,9 +123,14 @@ def Task_1_array(entries):
 
 def Task_0_array(instruments):
     print("\n")
+    instruments_setup_values = instruments[0]
+    print("Setup Values-----------------")
+    print(instruments_setup_values)
+    instruments.pop(0)
     for instrument in instruments:
         print("Instument-----------------")
         print(instrument)
+    # return None
 
     sourcemeters = []
     # ------------------- We setup the Sourcemeter Instruments AND their process via the input data we will apply
@@ -126,11 +138,11 @@ def Task_0_array(instruments):
         print(instrument)
         print("Instrument ID: ", instrument["Instrument"])
         sourcemeter = Instrument_Connection(instrument_name=instrument['Port Number'],
-                                            apply_voltage_range=None,
-                                            apply_compliance_current=10e-4,
-                                            apply_nplc=1,
-                                            apply_current_range=0.000105,
-                                            apply_auto_range=True)
+                                            apply_voltage_range=instruments_setup_values["Voltage Range"],  # =None,
+                                            apply_compliance_current=instruments_setup_values["Compliance Current"], # =10e-4,
+                                            apply_nplc= instruments_setup_values["Power Line Cycles"], # =1,
+                                            apply_current_range=instruments_setup_values["Current Range"], #=0.000105,
+                                            apply_auto_range=instruments_setup_values["Auto Range"]) #=True)
         instrument_optionmenu = instrument['OptionMenu']
         if instrument_optionmenu == 'Apply Incremental Voltage':
             voltages_sourcemeter = np.linspace(start=int(instrument['Min Voltage (Volts)']),
@@ -148,15 +160,16 @@ def Task_0_array(instruments):
         currents.append(current)
     print(currents)
     print("-----------\n")
-    return ("GOOD!")
+    return "GOOD!"
 
 
 def Get_Connected_Instruments():
-    connected_instument_names = []
+    # return ["GPIB::01","GPIB::02","GPIB::03","GPIB::04","GPIB::05","GPIB::06","GPIB::07","GPIB::08"]
+    connected_instrument_names = []
     for list_item in list_resources():
-        connected_instument_names.append(list_item)
-    connected_instument_names.pop(0)
-    if (len(connected_instument_names)==0):
-        return("NO Instrument is connected")
+        connected_instrument_names.append(list_item)
+    connected_instrument_names.pop(0)
+    if (len(connected_instrument_names) == 0):
+        return "No Instrument is connected"
     else:
-        return(connected_instument_names)
+        return connected_instrument_names

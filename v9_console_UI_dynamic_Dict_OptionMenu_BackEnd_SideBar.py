@@ -15,7 +15,14 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.instruments_search = "N/A"
-        self.init_sidebar_value = "1"  # <---------------------------- what is the initial State
+        self.instruments_setup_values = {
+            "Voltage Range": "None",  # value (in Volts) or None
+            "Compliance Current": "10e-4",  # A floating point property that controls the compliance current in Amps
+            "Power Line Cycles": "1",  # Number of power line cycles (NPLC) from 0.01 to 10
+            "Current Range": "0.000105",  # in Amps; Upper limit of current in Amps, from -1.05 A
+            "Auto Range": "True"  # Enables auto_range if True, else uses the set resistance
+        }
+        self.init_sidebar_value = "1"  # <--- The initial State (default Instrument Number displayed)
         self.group_frame = None
         self.entry_button = None
         self.single_frame_form = None
@@ -28,16 +35,11 @@ class App(customtkinter.CTk):
         self.single_frame_data = None
         self.single_frame = None
         self.single_frame_entry = None
-        self.apply_voltage_range = None  # value (in Volts) or None
-        self.apply_compliance_current = 10e-4  # A floating point property that controls the compliance current in Amps
-        self.apply_nplc = 1  # Number of power line cycles (NPLC) from 0.01 to 10
-        self.apply_current_range = 0.000105  # in Amps; Upper limit of current in Amps, from -1.05 A
-        self.apply_auto_range = True  # Enables auto_range if True, else uses the set resistance
 
         # -----------------------------------------------------Window---------------------------------------------------
         # configure window
         self.title("Instruments Operation Control")
-        self.geometry(f"{800}x{680}")
+        self.geometry(f"{1000}x{680}")  # {width}x{height}
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
         # --------------------------------------------------Side Bar----------------------------------------------------
@@ -105,7 +107,7 @@ class App(customtkinter.CTk):
 
         # --------------------------------------- Top Widget - Main Frame ----------------------------------------------
         # Create the Top Main Frame
-        self.top_main_frame = customtkinter.CTkScrollableFrame(self, height=200, corner_radius=0)
+        self.top_main_frame = customtkinter.CTkFrame(self, height=250, corner_radius=0)
         self.top_main_frame.grid(row=0, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
         # Top Frame --> Labels Will be updated
         # Top Widget --> Instrument status ---------------------------------------------------------------
@@ -119,26 +121,27 @@ class App(customtkinter.CTk):
                                                          fg_color="#1F6AA5")
         self.status_label_value.grid(row=0, column=1, pady=(10, 0))
         # Top Widget --> Default Values ---------------------------------------------------------------
-        self.top_main_instrumentation = customtkinter.CTkScrollableFrame(self.top_main_frame)
-        self.top_main_instrumentation.grid(row=1, column=0)
+        self.top_main_instrumentation = customtkinter.CTkFrame(self.top_main_frame,
+                                                               width=190,
+                                                               fg_color ="#333333",
+                                                               corner_radius=5)
+        self.top_main_instrumentation.grid(row=1, column=0, padx=(5, 5), pady=(5, 10), sticky="nsew")
 
+        self.top_main_label_title = customtkinter.CTkLabel(self.top_main_instrumentation,
+                                                           text="Insert Instrument's Setup Values:")
+        self.top_main_label_title.grid(row=0, column=0, sticky=tkinter.W, pady=2, padx=(5, 5))
 
-        curr_row_counter = 0
-        curr_label = "Test"
-        curr_entry = "Test 2"
-        self.top_main_label_1 = customtkinter.CTkLabel(self.top_main_instrumentation, text=curr_label)
-        self.top_main_label_1.grid(row=curr_row_counter, column=0, sticky=tkinter.W, pady=2, padx=(5, 5))
-        self.top_main_entry_1 = customtkinter.CTkEntry(self.top_main_instrumentation)
-        self.top_main_entry_1.delete(0)
-        self.top_main_entry_1.insert(0, curr_entry)
-        self.top_main_entry_1.grid(row=curr_row_counter, column=1, pady=2, padx=(5, 5))
-
-        #self.apply_voltage_range = None  # value (in Volts) or None
-        #self.apply_compliance_current = 10e-4  # A floating point property that controls the compliance current in Amps
-        #self.apply_nplc = 1  # Number of power line cycles (NPLC) from 0.01 to 10
-        #self.apply_current_range = 0.000105  # in Amps; Upper limit of current in Amps, from -1.05 A
-        #self.apply_auto_range = True  # Enables auto_range if True, else uses the set resistance
-
+        curr_row_counter = 1
+        self.instruments_tk_setup_values = []
+        for curr_label, curr_entry in self.instruments_setup_values.items():
+            self.top_main_label_inst = customtkinter.CTkLabel(self.top_main_instrumentation, text=curr_label)
+            self.top_main_label_inst.grid(row=curr_row_counter, column=0, sticky=tkinter.W, pady=2, padx=(5, 5))
+            self.top_main_entry_inst = customtkinter.CTkEntry(self.top_main_instrumentation)
+            self.top_main_entry_inst.delete(0)
+            self.top_main_entry_inst.insert(0, curr_entry)
+            self.top_main_entry_inst.grid(row=curr_row_counter, column=1, pady=2, padx=(5, 5))
+            self.instruments_tk_setup_values.append((self.top_main_label_inst, self.top_main_entry_inst))
+            curr_row_counter = curr_row_counter + 1
 
         # --------------------------------------- Core Widget - Main Frame ---------------------------------------------
         # Create the Core Main Frame with widgets
@@ -168,8 +171,8 @@ class App(customtkinter.CTk):
                 self.single_frame.grid(row=i + 1, column=1, padx=(5, 5), pady=(5, 10), sticky="nsew")
                 self.single_frame_data = self.group_data[i]
                 self.group_data_tk.append(self.generate_single_frame)
-        self.entry_button = customtkinter.CTkButton(master=self.group_frame, command=self.update_data_event,
-                                                    text="Update Entries")
+        self.entry_button = customtkinter.CTkButton(master=self.group_frame, command=self.measure_event,
+                                                    text="Start Measurement")
         self.entry_button.grid(row=1, column=2, pady=10, padx=20, sticky="n")
 
     # ----------------------------------This Generates the GPIB Group Frames--------------------------------------------
@@ -300,7 +303,17 @@ class App(customtkinter.CTk):
         self.group_frame.destroy()
         self.generate_group_frame()
 
-    def update_data_event(self):
+    def update_instruments_setup_values_event(self):
+        # ---------- Take the new Instrument data from Top Main Frame from TK
+        updated_instruments_setup_values = {}
+        for single_setup_value in self.instruments_tk_setup_values:
+            single_setup_value_label = single_setup_value[0].cget("text")
+            single_setup_value_value = single_setup_value[1].get()
+            # print(single_setup_value_label,single_setup_value_value)
+            updated_instruments_setup_values[single_setup_value_label] = single_setup_value_value
+        return updated_instruments_setup_values
+
+    def update_instruments_functional_values_event(self):
         updated_group_data = []
         # ---------- Generate the new data based on the Intput from TK
         for single_group_data_tk in self.group_data_tk:
@@ -309,17 +322,22 @@ class App(customtkinter.CTk):
             for i in range(2, len(single_group_data_tk)):
                 single_group_data[str(single_group_data_tk[i][0].cget("text"))] = str(single_group_data_tk[i][1].get())
             updated_group_data.append(single_group_data)
-        self.group_data = updated_group_data
-        self.measure_event()  # <--- a list of dictionaries, each dictornery is an instrument
+        return updated_group_data
+
+    def measure_event(self):
+        self.group_data = self.update_instruments_functional_values_event()
         # print(self.group_data)
+        self.instruments_setup_values = self.update_instruments_setup_values_event()
+        task_result = Task_0_array([self.instruments_setup_values] + self.group_data) # <--- a list of dictionaries, each dictornery is an instrument
+        print(task_result)
 
     def search_instrument_event(self):
         get_connected_instuments = Get_Connected_Instruments()
-        self.sidebar_search_instruments_label_value.configure(text=get_connected_instuments)
-
-    def measure_event(self):
-        task_result = Task_0_array(self.group_data)
-        print(task_result)
+        delimiter_value = "\n" # initializing delimiter
+        res = ''
+        for ele in get_connected_instuments: # using loop to add string followed by delim
+            res = res + str(ele) + delimiter_value
+        self.sidebar_search_instruments_label_value.configure(text=res)
 
     def change_scaling_event(self, new_scaling: str):
         new_scaling_float = int(new_scaling.replace("%", "")) / 100

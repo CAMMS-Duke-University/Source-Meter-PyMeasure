@@ -138,11 +138,11 @@ def Task_0_array(instruments):
         print(instrument)
         print("Instrument ID: ", instrument["Instrument"])
         sourcemeter = Instrument_Connection(instrument_name=instrument['Port Number'],
-                                            apply_voltage_range=instruments_setup_values["Voltage Range"],  # =None,
-                                            apply_compliance_current=instruments_setup_values["Compliance Current"], # =10e-4,
-                                            apply_nplc= instruments_setup_values["Power Line Cycles"], # =1,
-                                            apply_current_range=instruments_setup_values["Current Range"], #=0.000105,
-                                            apply_auto_range=instruments_setup_values["Auto Range"]) #=True)
+                                            apply_voltage_range= None if instruments_setup_values["Voltage Range"]=='None' else float(instruments_setup_values["Voltage Range"]), # =None,
+                                            apply_compliance_current=float(instruments_setup_values["Compliance Current"]), # =10e-4,
+                                            apply_nplc= int(instruments_setup_values["Power Line Cycles"]), # =1,
+                                            apply_current_range= float(instruments_setup_values["Current Range"]), #=0.000105,
+                                            apply_auto_range= bool(instruments_setup_values["Auto Range"])) #=True)
         instrument_optionmenu = instrument['OptionMenu']
         if instrument_optionmenu == 'Apply Incremental Voltage':
             voltages_sourcemeter = np.linspace(start=int(instrument['Min Voltage (Volts)']),

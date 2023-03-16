@@ -6,11 +6,6 @@ import pandas as pd
 from time import sleep
 from pymeasure.instruments import list_resources
 
-global apply_voltage_range_val
-global apply_compliance_current_val
-global apply_nplc_val
-global apply_current_range_val
-global apply_auto_range_val
 
 global instruments_setup_values
 
@@ -133,7 +128,7 @@ def Task_0_array(instruments):
     # return None
 
     sourcemeters = []
-    # ------------------- We setup the Sourcemeter Instruments AND their process via the input data we will apply
+    # ------------------- Here we Setup the Sourcemeter Instruments AND their process via the input data we will apply
     for instrument in instruments:
         print(instrument)
         print("Instrument ID: ", instrument["Instrument"])
@@ -154,6 +149,7 @@ def Task_0_array(instruments):
                                                num=int(instrument['Measurement Number']))
         sourcemeters.append((sourcemeter, voltages_sourcemeter))
 
+    # ------------------- Here we Start the measurements in sequential execution
     currents = []
     for sourcemeter in sourcemeters:
         current = Measure_List_Values_Current(sourcemeter[0], sourcemeter[1])

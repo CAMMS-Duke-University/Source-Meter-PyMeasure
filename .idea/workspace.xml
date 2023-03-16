@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/keithley_functions_parallel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/keithley_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/keithley_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v9_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar.py" beforeDir="false" afterPath="$PROJECT_DIR$/v9_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar.py" afterDir="false" />
     </list>

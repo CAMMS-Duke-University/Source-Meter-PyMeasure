@@ -165,7 +165,7 @@ def Get_Connected_Instruments():
     for list_item in list_resources():
         connected_instrument_names.append(list_item)
     connected_instrument_names.pop(0)
-    if (len(connected_instrument_names) == 0):
+    if len(connected_instrument_names) == 0:
         return "No Instrument is connected"
     else:
         return connected_instrument_names

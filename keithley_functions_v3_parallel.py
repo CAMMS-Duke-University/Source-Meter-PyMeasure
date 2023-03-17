@@ -8,7 +8,6 @@ import multiprocessing as mp
 import time
 import pandas as pd
 
-global instruments_setup_values
 global return_values
 
 
@@ -55,6 +54,7 @@ def Setup_Values(instruments_info):
     print("\n")
     print("Setup Values-----------------")
     print(instruments_setup_values)
+    return instruments_setup_values
 
 
 def Print_Instruments_info(instruments_info):
@@ -64,7 +64,7 @@ def Print_Instruments_info(instruments_info):
         print(instrument)
 
 
-def Setup_Instruments(instruments_info):
+def Setup_Instruments(instruments_setup_values, instruments_info):
     sourcemeters = []
     # ------------------- Here we Setup the Sourcemeter Instruments AND their process via the input data we will apply
     for instrument in instruments_info:
@@ -93,20 +93,28 @@ def Setup_Instruments(instruments_info):
 
 
 def Start_Instruments(sourcemeters):
-    if __name__ == '__main__':
-        for sourcemeter in sourcemeters:
-            source_process = mp.Process(target=Measure_List_Values_Current, args=(sourcemeter,))
-            source_process.start()
+    print("----!!!----",sourcemeters)
+
+    print("got in")
+    print("----!!!----",sourcemeters)
+    for sourcemeter in sourcemeters:
+        print("----!!!----",sourcemeter)
+        return None
+        source_process = mp.Process(target=Measure_List_Values_Current, args=(sourcemeter,))
+        source_process.start()
 
 
 def Task_0_array(instruments_info):
-    Setup_Values(instruments_info)
+    instruments_setup_values = Setup_Values(instruments_info)
     instruments_info.pop(0)  # ------------------- remove the 1st element which contains the instruments_setup_values
     Print_Instruments_info(instruments_info)
     # ------------------- Here we Setup the instruments and ready execution
-    sourcemeters = Setup_Instruments(instruments_info)
+    sourcemeters = Setup_Instruments(instruments_setup_values, instruments_info)
     # ------------------- Here we Start the measurements in parallel execution
     return_values = [[] for _ in range(len(sourcemeters))]
+    print(return_values)
+    print(sourcemeters)
+
     Start_Instruments(sourcemeters)
     print(return_values)
     print("-----------\n")

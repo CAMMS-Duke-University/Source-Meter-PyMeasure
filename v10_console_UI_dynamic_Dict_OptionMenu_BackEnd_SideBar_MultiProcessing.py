@@ -1,4 +1,4 @@
-from keithley_functions_v2_merged import *  # importing  all the Keithley libs
+from keithley_functions_parallel import *  # importing  all the Keithley libs
 import tkinter
 import tkinter.messagebox
 import customtkinter
@@ -39,7 +39,7 @@ class App(customtkinter.CTk):
         # -----------------------------------------------------Window---------------------------------------------------
         # configure window
         self.title("Instruments Operation Control")
-        self.geometry(f"{1300}x{980}")  # {width}x{height}
+        self.geometry(f"{1300}x{680}")  # {width}x{height}
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
         # --------------------------------------------------Side Bar----------------------------------------------------

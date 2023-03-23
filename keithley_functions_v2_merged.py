@@ -41,16 +41,14 @@ def Instrument_Connection(instrument_name,  # Name Type and Port of Instrument
 # ------------------- the 1st object of this list is the instruments_setup_values
 def Setup_Values(instruments_info):
     instruments_setup_values = instruments_info[0]
-    print("\n")
-    print("Setup Values-----------------")
+    print("Setup Values .........")
     print(instruments_setup_values)
     return instruments_setup_values
 
 
 def Print_Instruments_info(instruments_info):
-    print("\n")
     for instrument in instruments_info:
-        print("Instrument-----------------")
+        print("Instruments .........")
         print(instrument)
 
 
@@ -118,6 +116,8 @@ def Measure_Current_Multi_Instruments(sourcemeters_info):
         sourcemeters.append(sourcemeters_info[i][1])
         voltage_values.append(sourcemeters_info[i][2])
         current_values.append(np.zeros(values_size))
+    voltage_values = np.array(voltage_values)
+    current_values = np.array(current_values)
     # --------- Enable sourcemeters
     for sourcemeter in sourcemeters:
         sourcemeter.enable_source()
@@ -130,11 +130,13 @@ def Measure_Current_Multi_Instruments(sourcemeters_info):
             current_values[j, i] = current_sourcemeter.current
         time.sleep(0.25)
     # --------- Disable sourcemeters
-        for sourcemeter in sourcemeters:
-            sourcemeter.disable_source()
+    for sourcemeter in sourcemeters:
+        sourcemeter.disable_source()
     # --------- Print Currents
-    for i in (0, instruments_num):
-        print("Current Instrument",i+1,":",current_values[i])
+    i = 1
+    for current_current in current_values:
+        print("Instrument:",i," Currents:",current_current)
+        i +=1
     return (current_values)
 
 
@@ -165,9 +167,10 @@ def Measure_Current_Two_Instruments(sourcemeters_info):
 
 
 def Start_Instruments_Parallel(sourcemeters):
-    if (len(sourcemeters) == 2):
-        print("Use 2 Instruments Simultaneously")
-        return_values = Measure_Current_Two_Instruments(sourcemeters)
+    if (len(sourcemeters) >= 1):
+        print("Start Measure .........")
+        #return_values = Measure_Current_Two_Instruments(sourcemeters)
+        return_values = Measure_Current_Multi_Instruments(sourcemeters)
         return (sourcemeters)
 
 
@@ -177,10 +180,8 @@ def Task_0_array(instruments_info):
     Print_Instruments_info(instruments_info)
     # ------------------- Here we Setup the instruments and ready execution
     sourcemeters = Setup_Instruments(instruments_setup_values, instruments_info)
-    print(sourcemeters)
     # ------------------- Here we Start the measurements in parallel execution
     # return_values = Start_Instruments_Sequential(sourcemeters)
     return_values = Start_Instruments_Parallel(sourcemeters)
-    # print(return_values)
     print("-----------\n")
     return "GOOD!"

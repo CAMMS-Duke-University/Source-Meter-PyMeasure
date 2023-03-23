@@ -3,12 +3,22 @@ import tkinter
 import tkinter.messagebox
 import customtkinter
 
-customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
+customtkinter.set_appearance_mode("Dark")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 
 def change_appearance_mode_event(new_appearance_mode: str):
     customtkinter.set_appearance_mode(new_appearance_mode)
+
+
+def MouseWheelHandler(event):
+    global count
+    def delta(event):
+        if event.num == 5 or event.delta < 0:
+            return -1
+        return 1
+    count += delta(event)
+    print(count)
 
 
 class App(customtkinter.CTk):
@@ -122,9 +132,9 @@ class App(customtkinter.CTk):
         self.status_label_value.grid(row=0, column=1, pady=(10, 0))
         # Top Widget --> Default Values ---------------------------------------------------------------
         self.top_main_instrumentation = customtkinter.CTkFrame(self.top_main_frame,
-                                                               width=190,
+                                                               #width=90,
                                                                fg_color ="#333333",
-                                                               corner_radius=5)
+                                                               corner_radius=10)
         self.top_main_instrumentation.grid(row=1, column=0, padx=(5, 5), pady=(5, 10), sticky="nsew")
 
         self.top_main_label_title = customtkinter.CTkLabel(self.top_main_instrumentation,
@@ -136,7 +146,9 @@ class App(customtkinter.CTk):
         for curr_label, curr_entry in self.instruments_setup_values.items():
             self.top_main_label_inst = customtkinter.CTkLabel(self.top_main_instrumentation, text=curr_label)
             self.top_main_label_inst.grid(row=curr_row_counter, column=0, sticky=tkinter.W, pady=2, padx=(5, 5))
-            self.top_main_entry_inst = customtkinter.CTkEntry(self.top_main_instrumentation)
+            self.top_main_entry_inst = customtkinter.CTkEntry(self.top_main_instrumentation,
+                                                            corner_radius = 0,
+                                                            width=300)
             self.top_main_entry_inst.delete(0)
             self.top_main_entry_inst.insert(0, curr_entry)
             self.top_main_entry_inst.grid(row=curr_row_counter, column=1, pady=2, padx=(5, 5))
@@ -213,7 +225,9 @@ class App(customtkinter.CTk):
             if label != "Instrument" and label != "OptionMenu":
                 self.single_frame_label = customtkinter.CTkLabel(self.single_frame_form, text=label)
                 self.single_frame_label.grid(row=row_counter, column=0, sticky=tkinter.W, pady=2, padx=(5, 5))
-                self.single_frame_entry = customtkinter.CTkEntry(self.single_frame_form)
+                self.single_frame_entry = customtkinter.CTkEntry(self.single_frame_form,
+                                                                    corner_radius = 0,
+                                                                    width=150)
                 self.single_frame_entry.delete(0)
                 self.single_frame_entry.insert(0, entry)
                 self.single_frame_entry.grid(row=row_counter, column=1, pady=2, padx=(5, 5))
@@ -344,6 +358,11 @@ class App(customtkinter.CTk):
         customtkinter.set_widget_scaling(new_scaling_float)
 
 
+
 if __name__ == "__main__":
     app = App()
+    count = 0
+    app.bind("<MouseWheel>",MouseWheelHandler)
+    app.bind("<Button-4>",MouseWheelHandler)
+    app.bind("<Button-5>",MouseWheelHandler)
     app.mainloop()

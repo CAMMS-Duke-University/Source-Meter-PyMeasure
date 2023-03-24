@@ -85,13 +85,13 @@ def Setup_Instruments(instruments_setup_values, instruments_info):
                                          num=int(instrument['Measurement Number']))
         if instrument_optionmenu == 'Apply Incremental Current':
             measure_operation = "Measure Voltage"
-            applied_values = np.linspace(start=int(instrument['Min Current (Amps)']),
-                                         stop=int(instrument['Max Current (Amps)']),
+            applied_values = np.linspace(start=float(instrument['Min Current (Amps)']),
+                                         stop=float(instrument['Max Current (Amps)']),
                                          num=int(instrument['Measurement Number']))
         if instrument_optionmenu == 'Apply Steady Current':
             measure_operation = "Measure Voltage"
-            applied_values = np.linspace(start=int(instrument['Steady Current (Amps)']),
-                                         stop=int(instrument['Steady Current (Amps)']),
+            applied_values = np.linspace(start=float(instrument['Steady Current (Amps)']),
+                                         stop=float(instrument['Steady Current (Amps)']),
                                          num=int(instrument['Measurement Number']))
         sourcemeters.append((instrument["Port Number"], sourcemeter, applied_values, measure_operation))
     return sourcemeters

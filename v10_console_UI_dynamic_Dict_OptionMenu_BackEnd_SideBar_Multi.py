@@ -1,4 +1,4 @@
-from keithley_functions_v2_multi import *  # importing  all the Keithley libs
+from keithley_functions_v3_multi_options import *  # importing  all the Keithley libs
 import tkinter
 import tkinter.messagebox
 import customtkinter
@@ -108,6 +108,7 @@ class App(customtkinter.CTk):
                                                                        values=["Light", "Dark", "System"],
                                                                        command=change_appearance_mode_event)
         self.appearance_mode_option_menu.grid(row=8, column=0, padx=20, pady=(10, 10))
+        self.appearance_mode_option_menu.set("Dark")
         # Side Bar --> Window Scale (Extra Options)
         self.scaling_label = customtkinter.CTkLabel(self.sidebar_frame, text="UI Scaling:", anchor="w")
         self.scaling_label.grid(row=9, column=0, padx=20, pady=(10, 0))

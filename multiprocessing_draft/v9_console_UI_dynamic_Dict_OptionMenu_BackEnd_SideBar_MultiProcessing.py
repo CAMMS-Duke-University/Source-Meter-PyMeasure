@@ -1,4 +1,4 @@
-from keithley_functions_parallel import *  # importing  all the Keithley libs
+from keithley_functions_v3_parallel import *  # importing  all the Keithley libs
 import tkinter
 import tkinter.messagebox
 import customtkinter

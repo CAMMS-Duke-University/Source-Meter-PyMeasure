@@ -15,7 +15,7 @@ def Get_Connected_Instruments():
         connected_instrument_names.append(list_item)
     connected_instrument_names.pop(0)
     if len(connected_instrument_names) == 0:
-        return "No Instrument is connected"
+        return ["N/A Connected"]
     else:
         return connected_instrument_names
 
@@ -23,16 +23,32 @@ def Get_Connected_Instruments():
 # The following function connects and configure the scientific instrument
 # returns the handler of this instrument as to use for start measuring voltage or current
 def Instrument_Connection(instrument_name,  # Name Type and Port of Instrument
+                          measure_operation,  # "Measure Voltage" or "Measure Current"
+                          # ------------ for "Measure Current" Arguments
                           apply_voltage_range,  # in Volts
                           apply_compliance_current,  # in Amps
-                          apply_nplc,  # Number of power line cycles (NPLC) from 0.01 to 10
-                          apply_current_range,  # in Amps; Upper limit of current in Amps, from -1.05 A to 1.05 A
-                          apply_auto_range):  # Enables auto_range if True, else uses the set resistance
+                          measure_current_nplc,  # Number of power line cycles (NPLC) from 0.01 to 10
+                          measure_current,  # in Amps; Upper limit of current in Amps, from -1.05 A to 1.05 A
+                          measure_current_auto_range,  # Enables auto_range if True, else uses the set resistance
+                          # ------------ for "Measure Current" Arguments
+                          apply_current_range,  # A current_range value or None
+                          apply_compliance_voltage,  # A float in the correct range for a compliance_voltage
+                          measure_voltage_nplc,  # Number of power line cycles (NPLC) from 0.01 to 10
+                          measure_voltage,  # Upper limit of voltage in Volts, from -210 V to 210 V
+                          measure_voltage_auto_range  # Enables auto_range if True, else uses the set voltage
+                          ):
     sourcemeter = Keithley2400(instrument_name)
     sourcemeter.reset()
     sourcemeter.use_front_terminals()
-    sourcemeter.apply_voltage(voltage_range=apply_voltage_range, compliance_current=apply_compliance_current)
-    sourcemeter.measure_current(nplc=apply_nplc, current=apply_current_range, auto_range=apply_auto_range)
+    if measure_operation == "Measure Current":
+        sourcemeter.apply_voltage(voltage_range=apply_voltage_range, compliance_current=apply_compliance_current)
+        sourcemeter.measure_current(nplc=measure_current_nplc, current=measure_current,
+                                    auto_range=measure_current_auto_range)
+    if measure_operation == "Measure Voltage":
+        sourcemeter.apply_current(current_range=apply_current_range, compliance_voltage=apply_compliance_voltage)
+        sourcemeter.measure_voltage(nplc=measure_voltage_nplc, voltage=measure_voltage,
+                                    auto_range=measure_voltage_auto_range)
+
     sleep(0.1)  # wait here to give the instrument time to react
     return sourcemeter
 
@@ -58,16 +74,6 @@ def Setup_Instruments(instruments_setup_values, instruments_info):
     # ------------------- Here we Setup the Sourcemeter Instruments AND their process via the input data we will apply
     for instrument in instruments_info:
         print("Instrument ID: ", instrument["Instrument"])
-        sourcemeter = Instrument_Connection(instrument_name=instrument['Port Number'],
-                                            apply_voltage_range=None if instruments_setup_values[
-                                                                            "Voltage Range"] == 'None' else float(
-                                                instruments_setup_values["Voltage Range"]),  # =None,
-                                            apply_compliance_current=float(
-                                                instruments_setup_values["Compliance Current"]),  # =10e-4,
-                                            apply_nplc=int(instruments_setup_values["Power Line Cycles"]),  # =1,
-                                            apply_current_range=float(instruments_setup_values["Current Range"]),
-                                            # =0.000105,
-                                            apply_auto_range=bool(instruments_setup_values["Auto Range"]))  # =True)
         instrument_optionmenu = instrument['OptionMenu']
         applied_values = []  # the values which will be applied
         measure_operation = None  # measure type are "Measure Voltage" or "Measure Current"
@@ -93,6 +99,26 @@ def Setup_Instruments(instruments_setup_values, instruments_info):
             applied_values = np.linspace(start=float(instrument['Steady Current (Amps)']),
                                          stop=float(instrument['Steady Current (Amps)']),
                                          num=int(instrument['Measurement Number']))
+        sourcemeter = Instrument_Connection(instrument_name=instrument['Port Number'],
+                                            measure_operation=measure_operation,
+                                            # ------------ for "Measure Current" Arguments
+                                            apply_voltage_range=None if instruments_setup_values[
+                                                                            "Voltage Range [Measure Current]"] == 'None' else float(
+                                                instruments_setup_values["Voltage Range [Measure Current]"]),  # =None,
+                                            apply_compliance_current=float(
+                                                instruments_setup_values["Compliance Current [Measure Current]"]),  # =10e-4,
+                                            measure_current_nplc=int(instruments_setup_values["Power Line Cycles [Measure Current]"]), # =1,
+                                            measure_current=float(instruments_setup_values["Current Range [Measure Current]"]),# =0.000105,
+                                            measure_current_auto_range=bool(instruments_setup_values["Auto Range [Measure Current]"]), # =True
+                                            # ------------ for "Measure Current" Arguments
+                                            apply_current_range= None if instruments_setup_values[
+                                                                            "Current Range [Measure Voltage]"] == 'None' else float(
+                                                instruments_setup_values["Current Range [Measure Voltage]"]),  # =None,
+                                            apply_compliance_voltage= float(
+                                                instruments_setup_values["Compliance Voltage [Measure Voltage]"]), # 0.1,
+                                            measure_voltage_nplc= int(instruments_setup_values["Power Line Cycles [Measure Voltage]"]), # =1,
+                                            measure_voltage= float(instruments_setup_values["Voltage Range [Measure Voltage]"]), # 21.0,
+                                            measure_voltage_auto_range= bool(instruments_setup_values["Auto Range [Measure Voltage]"])) # True)
         sourcemeters.append((instrument["Port Number"], sourcemeter, applied_values, measure_operation))
     return sourcemeters
 

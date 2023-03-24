@@ -28,11 +28,18 @@ class App(customtkinter.CTk):
         super().__init__()
         self.instruments_search = "N/A"
         self.instruments_setup_values = {
-            "Voltage Range": "None",  # value (in Volts) or None
-            "Compliance Current": "10e-4",  # A floating point property that controls the compliance current in Amps
-            "Power Line Cycles": "1",  # Number of power line cycles (NPLC) from 0.01 to 10
-            "Current Range": "0.000105",  # in Amps; Upper limit of current in Amps, from -1.05 A
-            "Auto Range": "True"  # Enables auto_range if True, else uses the set resistance
+            # ------------ for "Measure Current" Arguments
+            "Voltage Range [Measure Current]": "None",  # value (in Volts) or None
+            "Compliance Current [Measure Current]": "10e-4",  # A floating point property that controls the compliance current in Amps
+            "Power Line Cycles [Measure Current]": "1",  # Number of power line cycles (NPLC) from 0.01 to 10
+            "Current Range [Measure Current]": "0.000105",  # in Amps; Upper limit of current in Amps, from -1.05 A
+            "Auto Range [Measure Current]": "True",  # Enables auto_range if True, else uses the set resistance
+            # ------------ for "Measure Voltage" Arguments
+            "Current Range [Measure Voltage]": "None",
+            "Compliance Voltage [Measure Voltage]": "0.1",
+            "Power Line Cycles [Measure Voltage]": "1",
+            "Voltage Range [Measure Voltage]": "21.0",
+            "Auto Range [Measure Voltage]": "True"
         }
         self.init_sidebar_value = "1"  # <--- The initial State (default Instrument Number displayed)
         self.group_frame = None

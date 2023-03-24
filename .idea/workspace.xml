@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/keithley_functions_v3_multi_options.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v10_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keithley_functions_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/keithley_functions_v1_sequential.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keithley_functions_v2_merged.py" beforeDir="false" afterPath="$PROJECT_DIR$/keithley_functions_v2_multi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keithley_functions_v3_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiprocessing_draft/keithley_functions_v3_parallel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v10_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_MultiProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiprocessing_draft/v9_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_MultiProcessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v9_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar.py" beforeDir="false" afterPath="$PROJECT_DIR$/v9_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keithley_functions_v3_multi_options.py" beforeDir="false" afterPath="$PROJECT_DIR$/keithley_functions_v3_multi_options.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v10_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi.py" beforeDir="false" afterPath="$PROJECT_DIR$/v10_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,15 +35,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/jacobkritikos/Github/Source-Meter-PyMeasure",
-    "settings.editor.selected.configurable": "inlay.hints"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jacobkritikos/Github/Source-Meter-PyMeasure&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />

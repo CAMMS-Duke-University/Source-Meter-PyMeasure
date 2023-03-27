@@ -48,7 +48,7 @@ def Instrument_Connection(instrument_name,  # Name Type and Port of Instrument
         sourcemeter.apply_current(current_range=apply_current_range, compliance_voltage=apply_compliance_voltage)
         sourcemeter.measure_voltage(nplc=measure_voltage_nplc, voltage=measure_voltage,
                                     auto_range=measure_voltage_auto_range)
-
+    print(sourcemeter)
     sleep(0.1)  # wait here to give the instrument time to react
     return sourcemeter
 
@@ -70,10 +70,11 @@ def Print_Instruments_info(instruments_info):
 
 
 def Setup_Instruments(instruments_setup_values, instruments_info):
+    print("Setup Instruments .........")
     sourcemeters = []
     # ------------------- Here we Setup the Sourcemeter Instruments AND their process via the input data we will apply
     for instrument in instruments_info:
-        print("Instrument ID: ", instrument["Instrument"])
+        print("Instrument ID: ", instrument["Instrument"], "- Port Number", instrument["Port Number"])
         instrument_optionmenu = instrument['OptionMenu']
         applied_values = []  # the values which will be applied
         measure_operation = None  # measure type are "Measure Voltage" or "Measure Current"
@@ -99,6 +100,8 @@ def Setup_Instruments(instruments_setup_values, instruments_info):
             applied_values = np.linspace(start=float(instrument['Steady Current (Amps)']),
                                          stop=float(instrument['Steady Current (Amps)']),
                                          num=int(instrument['Measurement Number']))
+        print("Measure Option:", measure_operation)
+        print("Applied Values:", applied_values)
         sourcemeter = Instrument_Connection(instrument_name=instrument['Port Number'],
                                             measure_operation=measure_operation,
                                             # ------------ for "Measure Current" Arguments
@@ -159,10 +162,10 @@ def Measure_Current_Multi_Instruments(sourcemeters_info):
             current_sourcemeter = sourcemeters[j]
             current_measure_operation = measure_operations[j]
             current_applied_value = applied_values[j, i]
-            if current_measure_operation == "Measure Voltage":
+            if current_measure_operation == "Measure Current":
                 current_sourcemeter.source_voltage = current_applied_value
                 measured_values[j, i] = current_sourcemeter.current
-            elif current_measure_operation == "Measure Current":
+            elif current_measure_operation == "Measure Voltage":
                 current_sourcemeter.source_current = current_applied_value
                 measured_values[j, i] = current_sourcemeter.voltage
         time.sleep(0.25)

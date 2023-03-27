@@ -30,7 +30,7 @@ class App(customtkinter.CTk):
         self.instruments_setup_values = {
             # ------------ for "Measure Current" Arguments
             "Voltage Range [Measure Current]": "None",  # value (in Volts) or None
-            "Compliance Current [Measure Current]": "10e-4",  # A floating point property that controls the compliance current in Amps
+            "Compliance Current [Measure Current]": "1011E-4",  # A floating point property that controls the compliance current in Amps
             "Power Line Cycles [Measure Current]": "1",  # Number of power line cycles (NPLC) from 0.01 to 10
             "Current Range [Measure Current]": "0.000105",  # in Amps; Upper limit of current in Amps, from -1.05 A
             "Auto Range [Measure Current]": "True",  # Enables auto_range if True, else uses the set resistance

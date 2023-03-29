@@ -59,7 +59,7 @@ class App(customtkinter.CTk):
         # -----------------------------------------------------Window---------------------------------------------------
         # configure window
         self.title("Instruments Operation Control")
-        self.geometry(f"{1300}x{980}")  # {width}x{height}
+        self.geometry(f"{1500}x{1180}")  # {width}x{height}
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
         # --------------------------------------------------Side Bar----------------------------------------------------
@@ -372,8 +372,7 @@ class App(customtkinter.CTk):
         self.instruments_setup_values = self.update_instruments_setup_values_event()
         for rep in range(0, int(self.repetition_num)):
             print("Repetition:", rep+1)
-            task_result = "test"
-            #task_result = Task_0_array([self.instruments_setup_values] + self.group_data)  # <--- a list of dictionaries, each dictornery is an instrument
+            task_result = Task_0_array([self.instruments_setup_values] + self.group_data)  # <--- a list of dictionaries, each dictornery is an instrument
             print(task_result)
 
     def search_instrument_event(self):

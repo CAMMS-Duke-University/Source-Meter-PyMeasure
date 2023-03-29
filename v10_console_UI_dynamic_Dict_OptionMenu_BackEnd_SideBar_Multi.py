@@ -42,6 +42,7 @@ class App(customtkinter.CTk):
             "Auto Range [Measure Voltage]": "True"
         }
         self.init_sidebar_value = "1"  # <--- The initial State (default Instrument Number displayed)
+        self.repetition_num = "1"
         self.group_frame = None
         self.entry_button = None
         self.single_frame_form = None
@@ -180,8 +181,8 @@ class App(customtkinter.CTk):
     # ----------------------------------This Generates the GPIB Group Frames--------------------------------------------
     def generate_group_frame(self):
         # Group Frame which includes GPIBs
-        self.group_frame = customtkinter.CTkFrame(self.main_frame, width=160, corner_radius=0)
-        self.group_frame.grid(row=2, column=2, padx=(20, 20), pady=(20, 20), sticky="nsew")
+        self.group_frame = customtkinter.CTkFrame(self.main_frame, width=120, corner_radius=0)
+        self.group_frame.grid(row=2, column=2, padx=(20, 20), pady=(20, 20), sticky="W", columnspan=2)
         self.group_frame.grid_rowconfigure(1, weight=1)
         self.group_data_tk = []
         if len(self.group_data) == 0:  # <----- the initial state
@@ -190,12 +191,27 @@ class App(customtkinter.CTk):
             for i in range(0, int(self.status_label_value.cget("text"))):
                 # Single Frame
                 self.single_frame = customtkinter.CTkFrame(self.group_frame, width=190)
-                self.single_frame.grid(row=i + 1, column=1, padx=(5, 5), pady=(5, 10), sticky="nsew")
+                self.single_frame.grid(row=i + 1, column=0, padx=(5, 5), pady=(5, 10), sticky="W")
                 self.single_frame_data = self.group_data[i]
                 self.group_data_tk.append(self.generate_single_frame)
-        self.entry_button = customtkinter.CTkButton(master=self.group_frame, command=self.measure_event,
+
+        self.measure_button_frame = customtkinter.CTkFrame(self.group_frame)
+        self.measure_button_frame.grid(row=1, column=1, padx=(20, 5), pady=(0, 5))
+
+        self.entry_button = customtkinter.CTkButton(master=self.measure_button_frame, command=self.measure_event,
                                                     text="Start Measurement")
-        self.entry_button.grid(row=1, column=2, pady=10, padx=20, sticky="n")
+        self.entry_button.grid(row=0, column=0, pady=10, padx=20, sticky="n")
+        self.entry_button_label = customtkinter.CTkLabel(self.measure_button_frame, font=("Calibre", 12),
+                                                              text="Number of Repetitions")
+        self.entry_button_label.grid(row=1, column=0, pady=0, padx=20, sticky="W")
+
+        self.entry_button_entry = customtkinter.CTkEntry(self.measure_button_frame,
+                                                         corner_radius=0,
+                                                         width=50)
+        self.entry_button_entry.delete(0)
+        self.entry_button_entry.insert(0, self.repetition_num)
+        self.entry_button_entry.grid(row=1, column=2, pady=0, padx=5, sticky="N")
+
 
     # ----------------------------------This Generates the GPIB Group Frames--------------------------------------------
     @property
@@ -349,12 +365,16 @@ class App(customtkinter.CTk):
         return updated_group_data
 
     def measure_event(self):
+        self.repetition_num = self.entry_button_entry.get()
+        # print("Repetition Number:", self.repetition_num )
         self.group_data = self.update_instruments_functional_values_event()
         # print(self.group_data)
         self.instruments_setup_values = self.update_instruments_setup_values_event()
-        task_result = Task_0_array([
-                                       self.instruments_setup_values] + self.group_data)  # <--- a list of dictionaries, each dictornery is an instrument
-        print(task_result)
+        for rep in range(0, int(self.repetition_num)):
+            print("Repetition:", rep+1)
+            task_result = "test"
+            #task_result = Task_0_array([self.instruments_setup_values] + self.group_data)  # <--- a list of dictionaries, each dictornery is an instrument
+            print(task_result)
 
     def search_instrument_event(self):
         get_connected_instuments = Get_Connected_Instruments()

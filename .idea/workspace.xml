@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/examples_general/get_date_time.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keithley_functions_v3_multi_options.py" beforeDir="false" afterPath="$PROJECT_DIR$/keithley_functions_v3_multi_options.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v10_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi.py" beforeDir="false" afterPath="$PROJECT_DIR$/v10_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +21,17 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev-branch" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">

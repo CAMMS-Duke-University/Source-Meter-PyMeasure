@@ -138,7 +138,7 @@ def Setup_Instruments(instruments_setup_values, instruments_info):
 
 # The following function apply a list of continuous voltages,
 # measure a list of continuous currents, and return this list of current
-def Measure_Current_Multi_Instruments(sourcemeters_info):
+def Measure_Multi_Instruments(sourcemeters_info):
     # the Argument sourcemeters_info is a list of lists: a 2-D list
     # the outer list corresponds to the used Instruments, each item of the outer list refers to a sole Instrument object
     # each Instrument object (inner list) contains the following items:
@@ -182,30 +182,41 @@ def Measure_Current_Multi_Instruments(sourcemeters_info):
     # --------- Disable sourcemeters
     for sourcemeter in sourcemeters:
         sourcemeter.disable_source()
-    # --------- Print Currents
-    i = 1
-    for single_list_values in measured_values:
-        print("Instrument:", i, " Currents:", single_list_values)
-        i += 1
-    return measured_values
+    # --------- Construct the results in tuples (applied values, measured values) for each instrument
+    my_results = []
+    for i in range(0, instruments_num):
+        my_results.append((list(applied_values[i]), list(measured_values[i])))
+        # print("------------Instrument:", i+1)
+        # print(" Applied Values:", applied_values[i])
+        # print(" Measured Values:", measured_values[i])
+    return (my_results)
 
 
 def Start_Instruments_Parallel(sourcemeters):
     if len(sourcemeters) >= 1:
         print("Start Measure .........")
-        return_values = Measure_Current_Multi_Instruments(sourcemeters)
+        return_values = Measure_Multi_Instruments(sourcemeters)
         return return_values
     else:
         print("No Instruments are selected")
         return None
 
 
-def Store_Data(result_values):
+def Store_Data(result_values, instruments_info):
+    instruments_num = len(result_values)
+    result_values_and_info = []
+    for i in range(0, instruments_num):
+        curr_port_number = instruments_info[i]['Port Number']
+        curr_applied_values = result_values[i][0]
+        curr_measured_values = result_values[i][1]
+        print("----------------------")
+        print("Instrument:", curr_port_number, "Applied Values:",curr_applied_values, "Measured Values:", curr_measured_values)
+        curr_values_and_info = (curr_port_number, curr_applied_values, curr_measured_values)
+        result_values_and_info.append(curr_values_and_info)
+    # print(result_values_and_info)
     # datetime object containing current date and time
     now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    path_stored = "data/Results" + dt_string
-    pd.DataFrame(result_values).to_csv(path_stored)
+    pd.DataFrame(result_values_and_info).to_csv("data/Results-"+ str(now.strftime("%d-%m-%Y-%H:%M:%S")) + ".csv")
     print("...Saved")
 
 
@@ -215,10 +226,12 @@ def Task_0_array(instruments_info):
     Print_Instruments_info(instruments_info)
     # ------------------- Here we Setup the instruments and ready execution
     sourcemeters = Setup_Instruments(instruments_setup_values, instruments_info)
+    # print("Sourcemeter:",sourcemeters)
     # ------------------- Here we Start the measurements in parallel execution
     # return_values = Start_Instruments_Sequential(sourcemeters)
-    return_values = Start_Instruments_Parallel(sourcemeters)
-    Store_Data(return_values)
+    return_values = Start_Instruments_Parallel(sourcemeters) # is a list of tuples (applied_values, measured_values)
+    # print("Returned Values:",return_values)
+    Store_Data(return_values, instruments_info)
 
     print("-----------\n")
     return "GOOD!"

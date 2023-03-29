@@ -5,6 +5,7 @@ import pandas as pd
 from time import sleep
 from pymeasure.instruments import list_resources
 import time
+from datetime import datetime
 
 
 # ------------------- Here we search for the Instruments
@@ -109,19 +110,28 @@ def Setup_Instruments(instruments_setup_values, instruments_info):
                                                                             "Voltage Range [Measure Current]"] == 'None' else float(
                                                 instruments_setup_values["Voltage Range [Measure Current]"]),  # =None,
                                             apply_compliance_current=float(
-                                                instruments_setup_values["Compliance Current [Measure Current]"]),  # =10e-4,
-                                            measure_current_nplc=int(instruments_setup_values["Power Line Cycles [Measure Current]"]), # =1,
-                                            measure_current=float(instruments_setup_values["Current Range [Measure Current]"]),# =0.000105,
-                                            measure_current_auto_range=bool(instruments_setup_values["Auto Range [Measure Current]"]), # =True
+                                                instruments_setup_values["Compliance Current [Measure Current]"]),
+                                            # =10e-4,
+                                            measure_current_nplc=int(
+                                                instruments_setup_values["Power Line Cycles [Measure Current]"]),  # =1,
+                                            measure_current=float(
+                                                instruments_setup_values["Current Range [Measure Current]"]),
+                                            # =0.000105,
+                                            measure_current_auto_range=bool(
+                                                instruments_setup_values["Auto Range [Measure Current]"]),  # =True
                                             # ------------ for "Measure Current" Arguments
-                                            apply_current_range= None if instruments_setup_values[
+                                            apply_current_range=None if instruments_setup_values[
                                                                             "Current Range [Measure Voltage]"] == 'None' else float(
                                                 instruments_setup_values["Current Range [Measure Voltage]"]),  # =None,
-                                            apply_compliance_voltage= float(
-                                                instruments_setup_values["Compliance Voltage [Measure Voltage]"]), # 0.1,
-                                            measure_voltage_nplc= int(instruments_setup_values["Power Line Cycles [Measure Voltage]"]), # =1,
-                                            measure_voltage= float(instruments_setup_values["Voltage Range [Measure Voltage]"]), # 21.0,
-                                            measure_voltage_auto_range= bool(instruments_setup_values["Auto Range [Measure Voltage]"])) # True)
+                                            apply_compliance_voltage=float(
+                                                instruments_setup_values["Compliance Voltage [Measure Voltage]"]),
+                                            # 0.1,
+                                            measure_voltage_nplc=int(
+                                                instruments_setup_values["Power Line Cycles [Measure Voltage]"]),  # =1,
+                                            measure_voltage=float(
+                                                instruments_setup_values["Voltage Range [Measure Voltage]"]),  # 21.0,
+                                            measure_voltage_auto_range=bool(
+                                                instruments_setup_values["Auto Range [Measure Voltage]"]))  # True)
         sourcemeters.append((instrument["Port Number"], sourcemeter, applied_values, measure_operation))
     return sourcemeters
 
@@ -190,6 +200,15 @@ def Start_Instruments_Parallel(sourcemeters):
         return None
 
 
+def Store_Data(result_values):
+    # datetime object containing current date and time
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    path_stored = "data/Results" + dt_string
+    pd.DataFrame(result_values).to_csv(path_stored)
+    print("...Saved")
+
+
 def Task_0_array(instruments_info):
     instruments_setup_values = Setup_Values(instruments_info)
     instruments_info.pop(0)  # ------------------- remove the 1st element which contains the instruments_setup_values
@@ -199,5 +218,7 @@ def Task_0_array(instruments_info):
     # ------------------- Here we Start the measurements in parallel execution
     # return_values = Start_Instruments_Sequential(sourcemeters)
     return_values = Start_Instruments_Parallel(sourcemeters)
+    Store_Data(return_values)
+
     print("-----------\n")
     return "GOOD!"

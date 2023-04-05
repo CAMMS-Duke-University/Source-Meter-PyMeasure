@@ -262,7 +262,7 @@ def Store_Data(result_values, instruments_info, time_step, timestamps):
         sec_min_time_value = float(time_value_string[3:])
         # print(time_value_string)
         # print("min:",min_time_value,"sec:",sec_min_time_value)
-        final_result_values[t,0] = min_time_value + sec_min_time_value*60
+        final_result_values[t,0] = min_time_value + sec_min_time_value/60
     #-------------- Reshape Data
     final_result_values_column_counter = 1
     for i in range(0, instruments_num):

@@ -138,7 +138,7 @@ def Setup_Instruments(instruments_setup_values, instruments_info):
 
 # The following function apply a list of continuous voltages,
 # measure a list of continuous currents, and return this list of current
-def Measure_Multi_Instruments(sourcemeters_info):
+def Measure_Multi_Instruments(sourcemeters_info, time_step):
     # the Argument sourcemeters_info is a list of lists: a 2-D list
     # the outer list corresponds to the used Instruments, each item of the outer list refers to a sole Instrument object
     # each Instrument object (inner list) contains the following items:
@@ -178,7 +178,7 @@ def Measure_Multi_Instruments(sourcemeters_info):
             elif current_measure_operation == "Measure Voltage":
                 current_sourcemeter.source_current = current_applied_value
                 measured_values[j, i] = current_sourcemeter.voltage
-        time.sleep(0.25)
+        time.sleep(time_step)
     # --------- Disable sourcemeters
     for sourcemeter in sourcemeters:
         sourcemeter.disable_source()
@@ -192,17 +192,17 @@ def Measure_Multi_Instruments(sourcemeters_info):
     return (my_results)
 
 
-def Start_Instruments_Parallel(sourcemeters):
+def Start_Instruments_Parallel(sourcemeters, time_step):
     if len(sourcemeters) >= 1:
         print("Start Measure .........")
-        return_values = Measure_Multi_Instruments(sourcemeters)
+        return_values = Measure_Multi_Instruments(sourcemeters, time_step)
         return return_values
     else:
         print("No Instruments are selected")
         return None
 
 
-def Store_Data(result_values, instruments_info):
+def Store_Data_Rows(result_values, instruments_info):
     instruments_num = len(result_values)
     result_values_and_info = []
     for i in range(0, instruments_num):
@@ -219,8 +219,55 @@ def Store_Data(result_values, instruments_info):
     pd.DataFrame(result_values_and_info).to_csv("data/Results-"+ str(now.strftime("%d-%m-%Y-%H:%M:%S")) + ".csv")
     print("...Saved")
 
+def Create_SCV_Columns(instruments_info):
+    csv_columns = ['Time (sec)']
+    for instrument in instruments_info:
+        if instrument["OptionMenu"] == "Apply Steady Voltage":
+            csv_columns.append('Voltage Set')
+            csv_columns.append('Current Measure')
+        if instrument["OptionMenu"] == "Apply Incremental Voltage":
+            csv_columns.append('Voltage Set')
+            csv_columns.append('Current Measure')
+        if instrument["OptionMenu"] == "Apply Steady Current":
+            csv_columns.append('Current Set')
+            csv_columns.append('Voltage Measure')
+        if instrument["OptionMenu"] == "Apply Incremental Current":
+            csv_columns.append('Current Set')
+            csv_columns.append('Voltage Measure')
+    #print(csv_columns)
+    return csv_columns
+
+def Store_Data(result_values, instruments_info, time_step):
+    # result_values shape: Instrument X Applied-or-Measured X Measurement
+    result_values = np.array(result_values)
+    print("Results Shape:",result_values.shape)
+    instruments_num = len(result_values)
+    print("Instruments Num:", instruments_num)
+    measurements_num = len(result_values[0][0])
+    print("Measurements Num:",measurements_num)
+    final_result_values = [[0]*(2*instruments_num+1)]*measurements_num
+    final_result_values = np.float64(final_result_values)
+    #-------------- First column is the time starting with Zero and increses with time_step
+    timer = 0
+    for t in range(0,measurements_num):
+        final_result_values[t,0] = timer
+        timer += time_step
+    #-------------- Reshape Data
+    final_result_values_column_counter = 1
+    for i in range(0, instruments_num):
+        for j in range(0, 2):
+            for k in range(0,measurements_num):
+                final_result_values[k,final_result_values_column_counter] = result_values[i,j,k]
+                # print(k,final_result_values_column_counter,"<--",i,j,k, "Values:", result_values[i,j,k])
+            final_result_values_column_counter +=1
+    final_result_columns = Create_SCV_Columns(instruments_info)
+    now = datetime.now()
+    df = pd.DataFrame(final_result_values, columns=final_result_columns)
+    df.to_csv("data/Results-"+ str(now.strftime("%d-%m-%Y-%H:%M:%S")) + ".csv")
+    print("...Saved")
 
 def Task_0_array(instruments_info):
+    time_step = 0.25
     instruments_setup_values = Setup_Values(instruments_info)
     instruments_info.pop(0)  # ------------------- remove the 1st element which contains the instruments_setup_values
     Print_Instruments_info(instruments_info)
@@ -229,9 +276,9 @@ def Task_0_array(instruments_info):
     # print("Sourcemeter:",sourcemeters)
     # ------------------- Here we Start the measurements in parallel execution
     # return_values = Start_Instruments_Sequential(sourcemeters)
-    return_values = Start_Instruments_Parallel(sourcemeters) # is a list of tuples (applied_values, measured_values)
+    return_values = Start_Instruments_Parallel(sourcemeters, time_step) # is a list of tuples (applied_values, measured_values)
     # print("Returned Values:",return_values)
-    Store_Data(return_values, instruments_info)
+    Store_Data(return_values, instruments_info, time_step)
 
     print("-----------\n")
     return "GOOD!"

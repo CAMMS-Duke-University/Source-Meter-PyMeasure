@@ -167,7 +167,14 @@ def Measure_Multi_Instruments(sourcemeters_info, time_step):
     for sourcemeter in sourcemeters:
         sourcemeter.enable_source()
     # --------- Measure
+    timestamps = []
+    time_init = datetime.now()
     for i in range(0, values_size):
+        # --------- take timer
+        now = datetime.now()
+        time_difference = now - time_init
+        # print(time_difference, type(time_difference),str(time_difference)[2:])
+        timestamps.append(str(time_difference)[2:])
         for j in range(0, instruments_num):  # Parallel
             current_sourcemeter = sourcemeters[j]
             current_measure_operation = measure_operations[j]
@@ -179,6 +186,7 @@ def Measure_Multi_Instruments(sourcemeters_info, time_step):
                 current_sourcemeter.source_current = current_applied_value
                 measured_values[j, i] = current_sourcemeter.voltage
         time.sleep(time_step)
+    # print(timestamps)
     # --------- Disable sourcemeters
     for sourcemeter in sourcemeters:
         sourcemeter.disable_source()
@@ -189,14 +197,14 @@ def Measure_Multi_Instruments(sourcemeters_info, time_step):
         # print("------------Instrument:", i+1)
         # print(" Applied Values:", applied_values[i])
         # print(" Measured Values:", measured_values[i])
-    return (my_results)
+    return my_results, timestamps
 
 
 def Start_Instruments_Parallel(sourcemeters, time_step):
     if len(sourcemeters) >= 1:
         print("Start Measure .........")
-        return_values = Measure_Multi_Instruments(sourcemeters, time_step)
-        return return_values
+        return_values, timestamps = Measure_Multi_Instruments(sourcemeters, time_step)
+        return return_values, timestamps
     else:
         print("No Instruments are selected")
         return None
@@ -220,7 +228,7 @@ def Store_Data_Rows(result_values, instruments_info):
     print("...Saved")
 
 def Create_SCV_Columns(instruments_info):
-    csv_columns = ['Time (sec)']
+    csv_columns = ['Time (min)']
     for instrument in instruments_info:
         if instrument["OptionMenu"] == "Apply Steady Voltage":
             csv_columns.append('Voltage Set')
@@ -237,7 +245,7 @@ def Create_SCV_Columns(instruments_info):
     #print(csv_columns)
     return csv_columns
 
-def Store_Data(result_values, instruments_info, time_step):
+def Store_Data(result_values, instruments_info, time_step, timestamps):
     # result_values shape: Instrument X Applied-or-Measured X Measurement
     result_values = np.array(result_values)
     print("Results Shape:",result_values.shape)
@@ -248,10 +256,13 @@ def Store_Data(result_values, instruments_info, time_step):
     final_result_values = [[0]*(2*instruments_num+1)]*measurements_num
     final_result_values = np.float64(final_result_values)
     #-------------- First column is the time starting with Zero and increses with time_step
-    timer = 0
     for t in range(0,measurements_num):
-        final_result_values[t,0] = timer
-        timer += time_step
+        time_value_string = timestamps[t] # '00:00.000017'
+        min_time_value = float(time_value_string[0:2])
+        sec_min_time_value = float(time_value_string[3:])
+        # print(time_value_string)
+        # print("min:",min_time_value,"sec:",sec_min_time_value)
+        final_result_values[t,0] = min_time_value + sec_min_time_value*60
     #-------------- Reshape Data
     final_result_values_column_counter = 1
     for i in range(0, instruments_num):
@@ -276,9 +287,9 @@ def Task_0_array(instruments_info):
     # print("Sourcemeter:",sourcemeters)
     # ------------------- Here we Start the measurements in parallel execution
     # return_values = Start_Instruments_Sequential(sourcemeters)
-    return_values = Start_Instruments_Parallel(sourcemeters, time_step) # is a list of tuples (applied_values, measured_values)
+    return_values, timestamps = Start_Instruments_Parallel(sourcemeters, time_step) # is a list of tuples (applied_values, measured_values)
     # print("Returned Values:",return_values)
-    Store_Data(return_values, instruments_info, time_step)
+    Store_Data(return_values, instruments_info, time_step, timestamps)
 
     print("-----------\n")
     return "GOOD!"

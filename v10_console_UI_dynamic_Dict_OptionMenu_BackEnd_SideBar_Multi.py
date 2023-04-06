@@ -272,7 +272,7 @@ class App(customtkinter.CTk):
                 "Instrument": str(i + 1),
                 "OptionMenu": "Apply Incremental Voltage",
                 "Port Number": "GPIB::" + str(i),
-                "Measurement Number": str(i + 10),
+                "Measurement Number": str(10+i),
                 "Min Voltage (Volts)": str(i),
                 "Max Voltage (Volts)": str(i + 10)
             })

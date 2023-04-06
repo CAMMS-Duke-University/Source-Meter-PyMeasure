@@ -147,11 +147,8 @@ def Measure_Multi_Instruments(sourcemeters_info, time_step):
     # item 2 => [Instrument][2]: list of input values of this Instrument,
     # item 3 => [Instrument][3]: measure_operation, if the Instrument Apply Voltage and Measure Current or the opposite
     instruments_num = len(sourcemeters_info)  # Number of used Instruments
-    values_size = len(sourcemeters_info[0][2])
-    for i in range(0, instruments_num):
-        if len(sourcemeters_info[i][2]) < values_size:
-            values_size = len(sourcemeters_info[i][2])  # Because is parallel take the smaller Number of Measurements
     # --------- Initiate
+    values_size = len(sourcemeters_info[0][2])
     sourcemeters = []  # we create a list of the reference/pointer for each sourcemeter
     applied_values = []  # we create a 2-D array; each row is the Instrument; each column is the parallel applied value
     measured_values = []  # we create a 2-D array; each row is the Instrument; each column is the parallel measured value
@@ -230,18 +227,19 @@ def Store_Data_Rows(result_values, instruments_info):
 def Create_SCV_Columns(instruments_info):
     csv_columns = ['Time (min)']
     for instrument in instruments_info:
+        instrument_port = instrument['Port Number']
         if instrument["OptionMenu"] == "Apply Steady Voltage":
-            csv_columns.append('Voltage Set')
-            csv_columns.append('Current Measure')
+            csv_columns.append(instrument_port + ' Voltage Set')
+            csv_columns.append(instrument_port + ' Current Measure')
         if instrument["OptionMenu"] == "Apply Incremental Voltage":
-            csv_columns.append('Voltage Set')
-            csv_columns.append('Current Measure')
+            csv_columns.append(instrument_port + ' Voltage Set')
+            csv_columns.append(instrument_port + ' Current Measure')
         if instrument["OptionMenu"] == "Apply Steady Current":
-            csv_columns.append('Current Set')
-            csv_columns.append('Voltage Measure')
+            csv_columns.append(instrument_port + ' Current Set')
+            csv_columns.append(instrument_port + ' Voltage Measure')
         if instrument["OptionMenu"] == "Apply Incremental Current":
-            csv_columns.append('Current Set')
-            csv_columns.append('Voltage Measure')
+            csv_columns.append(instrument_port + ' Current Set')
+            csv_columns.append(instrument_port + ' Voltage Measure')
     #print(csv_columns)
     return csv_columns
 
@@ -277,10 +275,21 @@ def Store_Data(result_values, instruments_info, time_step, timestamps):
     df.to_csv("data/Results-"+ str(now.strftime("%d-%m-%Y-%H:%M:%S")) + ".csv")
     print("...Saved")
 
+# CHecks if the Measurement Number is the same to all instruments (it's parralel process)
+# And selects the minimum number
+def Correct_Measurements_Number(instruments_info):
+    instruments_num = len(instruments_info)
+    measurement_size = int(instruments_info[0]['Measurement Number'])
+    for i in range(0, instruments_num):
+        if measurement_size <  int(instruments_info[i]['Measurement Number']):
+            instruments_info[i]['Measurement Number'] = str(measurement_size)
+    return instruments_info
+
 def Task_0_array(instruments_info):
     time_step = 0.25
     instruments_setup_values = Setup_Values(instruments_info)
     instruments_info.pop(0)  # ------------------- remove the 1st element which contains the instruments_setup_values
+    instruments_info = Correct_Measurements_Number(instruments_info) # selects the minimum number of measurements
     Print_Instruments_info(instruments_info)
     # ------------------- Here we Setup the instruments and ready execution
     sourcemeters = Setup_Instruments(instruments_setup_values, instruments_info)

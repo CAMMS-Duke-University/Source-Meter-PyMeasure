@@ -1,6 +1,7 @@
 from keithley_functions_v3_multi_options import *  # importing  all the Keithley libs
 import tkinter
 import tkinter.messagebox
+from tkinter import filedialog as fd
 import customtkinter
 import numpy as np
 import pandas as pd
@@ -26,6 +27,7 @@ def MouseWheelHandler(event):
     count += delta(event)
     print(count)
 
+
 def Sub_Plot(axis, subplot_x, sublplot_y, x_data, y_data, plot_title, plot_x_label, plot_y_label):
     axis[subplot_x, sublplot_y].plot(x_data, y_data)
     axis[subplot_x, sublplot_y].set_title(plot_title)
@@ -33,8 +35,9 @@ def Sub_Plot(axis, subplot_x, sublplot_y, x_data, y_data, plot_title, plot_x_lab
     axis[subplot_x, sublplot_y].set_ylabel(plot_y_label)
 
 
-def graph():
-    df = pd.read_csv('data/Results-06-04-2023-11:37:00.csv')
+def graph(data_path):
+    print("Data Path for Plotting:",data_path)
+    df = pd.read_csv(data_path)
     df_column_names = list(df.columns)[1:]
     columns_num = len(df_column_names)
     instruments_num = int((len(df_column_names) - 1) / 2)
@@ -43,34 +46,43 @@ def graph():
     print("Number of instruments:", instruments_num)
     fig, axs = plt.subplots(instruments_num, 3)
     column_pointer = 1
+    column_border = 0
     for i in range(0, instruments_num):
         Sub_Plot(axis=axs,
-                 subplot_x=i,
-                 sublplot_y=0,
+                 subplot_x=2,
+                 sublplot_y=i,
                  x_data=df[df_column_names[column_pointer]].values,
                  y_data=df[df_column_names[column_pointer + 1]].values,
                  plot_title=df_column_names[column_pointer][0:7],
                  plot_x_label=df_column_names[column_pointer][7:],
                  plot_y_label=df_column_names[column_pointer + 1][7:])
         Sub_Plot(axis=axs,
-                 subplot_x=i,
-                 sublplot_y=1,
-                 x_data=df[df_column_names[0]].values,
-                 y_data=df[df_column_names[column_pointer]].values,
-                 plot_title=df_column_names[column_pointer][0:7],
-                 plot_x_label=df_column_names[0],
-                 plot_y_label=df_column_names[column_pointer][7:])
-        Sub_Plot(axis=axs,
-                 subplot_x=i,
-                 sublplot_y=2,
+                 subplot_x=1,
+                 sublplot_y=i,
                  x_data=df[df_column_names[0]].values,
                  y_data=df[df_column_names[column_pointer + 1]].values,
                  plot_title=df_column_names[column_pointer][0:7],
                  plot_x_label=df_column_names[0],
                  plot_y_label=df_column_names[column_pointer + 1][7:])
+        Sub_Plot(axis=axs,
+                 subplot_x=0,
+                 sublplot_y=i,
+                 x_data=df[df_column_names[0]].values,
+                 y_data=df[df_column_names[column_pointer]].values,
+                 plot_title=df_column_names[column_pointer][0:7],
+                 plot_x_label=df_column_names[0],
+                 plot_y_label=df_column_names[column_pointer][7:])
+        rect = plt.Rectangle(
+            # (lower-left corner), width, height
+            (0.01 + column_border, 0.01), 0.30, 0.97, fill=False, color="k", lw=1,
+            zorder=1000, transform=fig.transFigure, figure=fig
+        )
+        fig.patches.extend([rect])
+        column_border += 0.334
         column_pointer += 2
     fig.tight_layout()
     plt.show()
+
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -79,7 +91,8 @@ class App(customtkinter.CTk):
         self.instruments_setup_values = {
             # ------------ for "Measure Current" Arguments
             "Voltage Range [Measure Current]": "None",  # value (in Volts) or None
-            "Compliance Current [Measure Current]": "1011E-4",  # A floating point property that controls the compliance current in Amps
+            "Compliance Current [Measure Current]": "1011E-4",
+            # A floating point property that controls the compliance current in Amps
             "Power Line Cycles [Measure Current]": "1",  # Number of power line cycles (NPLC) from 0.01 to 10
             "Current Range [Measure Current]": "0.000105",  # in Amps; Upper limit of current in Amps, from -1.05 A
             "Auto Range [Measure Current]": "True",  # Enables auto_range if True, else uses the set resistance
@@ -104,11 +117,12 @@ class App(customtkinter.CTk):
         self.single_frame_data = None
         self.single_frame = None
         self.single_frame_entry = None
+        self.filename = 'data/Results-06-04-2023-11:37:00.csv'
 
         # -----------------------------------------------------Window---------------------------------------------------
         # configure window
         self.title("Instruments Operation Control")
-        self.geometry(f"{1500}x{1180}")  # {width}x{height}
+        self.geometry(f"{1250}x{1150}")  # {width}x{height}
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
         # --------------------------------------------------Side Bar----------------------------------------------------
@@ -177,25 +191,29 @@ class App(customtkinter.CTk):
 
         # --------------------------------------- Top Widget - Main Frame ----------------------------------------------
         # Create the Top Main Frame
-        self.top_main_frame = customtkinter.CTkFrame(self, height=250, corner_radius=0)
-        self.top_main_frame.grid(row=0, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
+        self.top_main_frame = customtkinter.CTkFrame(self, height=250, width=700, corner_radius=0)
+        self.top_main_frame.grid(row=0, column=1, padx=(20, 20), pady=(20, 0), sticky="W")
         # Top Frame --> Labels Will be updated
         # Top Widget --> Instrument status ---------------------------------------------------------------
-        self.status_label_title = customtkinter.CTkLabel(self.top_main_frame, text="Number of Instruments Selected:",
+        self.status_label_frame = customtkinter.CTkFrame(self.top_main_frame, corner_radius=0)
+        self.status_label_frame.grid(row=0, column=0, padx=(5, 20), pady=(20, 10), sticky="W")
+
+        self.status_label_title = customtkinter.CTkLabel(self.status_label_frame,
+                                                         text="Number of Instruments Selected:",
                                                          font=("Calibre", 18))
-        self.status_label_title.grid(row=0, column=0, padx=5, pady=(10, 0))
-        self.status_label_value = customtkinter.CTkLabel(self.top_main_frame, text=self.init_sidebar_value,
+        self.status_label_title.grid(row=0, column=0, padx=5, pady=(10, 0), sticky="W")
+        self.status_label_value = customtkinter.CTkLabel(self.status_label_frame, text=self.init_sidebar_value,
                                                          width=40,
                                                          corner_radius=5,
                                                          font=("Calibre", 18),
                                                          fg_color="#1F6AA5")
-        self.status_label_value.grid(row=0, column=1, pady=(10, 0))
+        self.status_label_value.grid(row=0, column=1, padx=(0, 20), pady=(10, 0), sticky="W")
         # Top Widget --> Default Values ---------------------------------------------------------------
         self.top_main_instrumentation = customtkinter.CTkFrame(self.top_main_frame,
                                                                # width=90,
                                                                fg_color="#333333",
                                                                corner_radius=10)
-        self.top_main_instrumentation.grid(row=1, column=0, padx=(5, 5), pady=(5, 10), sticky="nsew")
+        self.top_main_instrumentation.grid(row=3, column=0, padx=(5, 5), pady=(5, 10), sticky="S")
 
         self.top_main_label_title = customtkinter.CTkLabel(self.top_main_instrumentation,
                                                            text="Insert Instrument's Setup Values:")
@@ -217,15 +235,40 @@ class App(customtkinter.CTk):
 
         # --------------------------------------- Core Widget - Main Frame ---------------------------------------------
         # Create the Core Main Frame with widgets
-        self.main_frame = customtkinter.CTkScrollableFrame(self, height=400, corner_radius=0)
-        self.main_frame.grid(row=1, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
-        self.main_frame.grid_rowconfigure(4, weight=1)
+        self.main_frame = customtkinter.CTkScrollableFrame(self, height=400, width=700, corner_radius=0)
+        self.main_frame.grid(row=1, column=1, padx=(20, 20), pady=(20, 0), sticky="W")
         # Main Frame --> Generate Individual Frame Data for each GPIB
         # "group_data" refer to all the data which will be completed and will be sent to the GPIBs
         # "group_data_tk" refer to all the tk data relevant to the group_data which operate the UI
         self.group_data = []  # 3D-Array (1st: the individual frame; 2nd: the label; 3rd: the entry)
         self.group_data_tk = []
         self.generate_group_frame()
+
+        # --------------------------------------------------Right Side Bar----------------------------------------------
+        # Create RIGHT sidebar Frame with widgets
+        self.right_sidebar_frame = customtkinter.CTkFrame(self, height=300, width=120, corner_radius=0)
+        self.right_sidebar_frame.grid(row=0, column=2, sticky="NW")
+        # Side Bar --> Title
+        self.right_sidebar_title_label = customtkinter.CTkLabel(master=self.right_sidebar_frame, text="Plots Panel",
+                                                                font=("Calibre", 16), anchor="n")
+        self.right_sidebar_title_label.grid(row=0, column=0, padx=20, pady=(10, 10))
+
+        self.plot_file_button = customtkinter.CTkButton(master=self.right_sidebar_frame,
+                                                        text='Open a File',
+                                                        command=self.select_file)
+        self.plot_file_button.grid(row=1, column=0, pady=10, padx=20, sticky="w")
+        self.plot_file_name_title = customtkinter.CTkLabel(master=self.right_sidebar_frame, text="File Selected:",
+                                                           font=("Calibre", 15))
+        self.plot_file_name_title.grid(row=2, column=0, padx=(5,0), pady=(10, 0), sticky="w")
+        self.plot_file_name_label = customtkinter.CTkLabel(master=self.right_sidebar_frame, font=("Calibre", 12),
+                                                           text="No File Selected")
+        self.plot_file_name_label.grid(row=3, column=0, padx=(5,0), pady=(0,10), sticky="w")
+        self.plot_button = customtkinter.CTkButton(master=self.right_sidebar_frame,
+                                                   command= lambda: graph(self.filename),
+                                                   text="Show Graph")
+        self.plot_button.grid(row=4, column=0, pady=10, padx=20, sticky="w")
+
+
 
     # ----------------------------------This Generates the GPIB Group Frames--------------------------------------------
     def generate_group_frame(self):
@@ -251,7 +294,7 @@ class App(customtkinter.CTk):
                                                     text="Start Measurement")
         self.entry_button.grid(row=0, column=0, pady=10, padx=20, sticky="n")
         self.entry_button_label = customtkinter.CTkLabel(self.measure_button_frame, font=("Calibre", 12),
-                                                              text="Number of Repetitions")
+                                                         text="Number of Repetitions")
         self.entry_button_label.grid(row=1, column=0, pady=0, padx=20, sticky="W")
 
         self.entry_button_entry = customtkinter.CTkEntry(self.measure_button_frame,
@@ -260,13 +303,6 @@ class App(customtkinter.CTk):
         self.entry_button_entry.delete(0)
         self.entry_button_entry.insert(0, self.repetition_num)
         self.entry_button_entry.grid(row=1, column=2, pady=0, padx=5, sticky="W")
-
-        self.plot_button_frame = customtkinter.CTkFrame(self.group_frame)
-        self.plot_button_frame.grid(row=2, column=1, padx=(0, 5), pady=(0, 0))
-        self.plot_button = customtkinter.CTkButton(master=self.plot_button_frame, command=graph,
-                                                    text="Show Graph")
-        self.plot_button.grid(row=0, column=0, pady=10, padx=20, sticky="w")
-
 
     # ----------------------------------This Generates the GPIB Group Frames--------------------------------------------
     @property
@@ -327,7 +363,7 @@ class App(customtkinter.CTk):
                 "Instrument": str(i + 1),
                 "OptionMenu": "Apply Incremental Voltage",
                 "Port Number": "GPIB::" + str(i),
-                "Measurement Number": str(10+i),
+                "Measurement Number": str(10 + i),
                 "Min Voltage (Volts)": str(i),
                 "Max Voltage (Volts)": str(i + 10)
             })
@@ -426,8 +462,9 @@ class App(customtkinter.CTk):
         # print(self.group_data)
         self.instruments_setup_values = self.update_instruments_setup_values_event()
         for rep in range(0, int(self.repetition_num)):
-            print("Repetition:", rep+1)
-            task_result = Task_0_array([self.instruments_setup_values] + self.group_data)  # <--- a list of dictionaries, each dictornery is an instrument
+            print("Repetition:", rep + 1)
+            task_result = Task_0_array([
+                                           self.instruments_setup_values] + self.group_data)  # <--- a list of dictionaries, each dictornery is an instrument
             print(task_result)
 
     def search_instrument_event(self):
@@ -441,6 +478,12 @@ class App(customtkinter.CTk):
     def change_scaling_event(self, new_scaling: str):
         new_scaling_float = int(new_scaling.replace("%", "")) / 100
         customtkinter.set_widget_scaling(new_scaling_float)
+
+    def select_file(self):
+        filetypes = (('text files', '*.csv'), ('All files', '*.*'))
+        self.filename = fd.askopenfilename(title='Open a file', filetypes=filetypes)
+        print(self.filename)
+        self.plot_file_name_label.configure(text=self.filename[-23:])
 
 
 if __name__ == "__main__":

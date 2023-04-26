@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc989de-30fb-49b4-b044-9f2b3fe76070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Results-24-04-2023-12:05:54.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Results-24-04-2023-12:08:00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Results-24-04-2023-12:10:23.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Results-24-04-2023-12:10:59.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Results-24-04-2023-12:13:53.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Results-26-04-2023-12:26:01.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py" beforeDir="false" afterPath="$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +59,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jacobkritikos/Github/Source-Meter-PyMeasure&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
   }
@@ -68,28 +75,7 @@
       <recent name="$PROJECT_DIR$/examples_tkinter" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.v12_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots">
-    <configuration name="new_Window" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Source-Meter-PyMeasure" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples_general" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples_general/new_Window.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class">
     <configuration name="real_plot_3b_minimal_class(without_self)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Source-Meter-PyMeasure" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,13 +160,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Source-Meter-PyMeasure" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.9" />
+      <option name="SDK_NAME" value="Python 3.9" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class" />
         <item itemvalue="Python.v12_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots" />
         <item itemvalue="Python.v11_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots" />
         <item itemvalue="Python.real_plot_4_minimal_class_newWindow" />
         <item itemvalue="Python.real_plot_3b_minimal_class(without_self)" />
-        <item itemvalue="Python.new_Window" />
       </list>
     </recent_temporary>
   </component>
@@ -224,28 +232,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py</url>
-          <line>766</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py</url>
           <line>760</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py</url>
-          <line>759</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py</url>
           <line>774</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/v13_console_UI_dynamic_Dict_OptionMenu_BackEnd_SideBar_Multi_Plots_Dynamic_Plots_All_in_One_Class.py</url>
-          <line>780</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

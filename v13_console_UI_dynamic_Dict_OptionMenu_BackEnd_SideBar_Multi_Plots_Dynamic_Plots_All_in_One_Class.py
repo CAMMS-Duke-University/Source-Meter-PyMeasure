@@ -757,7 +757,7 @@ class App(customtkinter.CTk):
         # --------- Measure
         timestamps = []
         time_init = datetime.now()
-        self.openNewWindow()
+        # self.openNewWindow()
         for i in range(0, values_size):
             # --------- take timer
             now = datetime.now()
@@ -772,13 +772,13 @@ class App(customtkinter.CTk):
                     current_sourcemeter.source_voltage = current_applied_value
                     measured_value = current_sourcemeter.current
                     measured_values[j, i] = measured_value
-                    self.animate_data(x=current_applied_value, y=measured_value)
+                    # self.animate_data(x=current_applied_value, y=measured_value)
 
                 elif current_measure_operation == "Measure Voltage":
                     current_sourcemeter.source_current = current_applied_value
                     measured_value = current_sourcemeter.voltage
                     measured_values[j, i] = measured_value
-                    self.animate_data(x=current_applied_value, y=measured_value)
+                    # self.animate_data(x=current_applied_value, y=measured_value)
             time.sleep(time_step)
         # print(timestamps)
         # --------- Disable sourcemeters

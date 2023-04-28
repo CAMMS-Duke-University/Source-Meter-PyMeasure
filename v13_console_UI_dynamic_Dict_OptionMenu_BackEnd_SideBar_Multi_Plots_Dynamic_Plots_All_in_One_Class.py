@@ -758,6 +758,7 @@ class App(customtkinter.CTk):
         # --------- Measure
         timestamps = []
         time_init = datetime.now()
+        # self.openNewWindow()
         for i in range(0, values_size):
             # --------- take timer
             now = datetime.now()

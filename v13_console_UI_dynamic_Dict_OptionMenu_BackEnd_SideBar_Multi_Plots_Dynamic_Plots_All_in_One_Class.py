@@ -335,7 +335,7 @@ class App(customtkinter.CTk):
         # -----------------------------------------------------Window---------------------------------------------------
         # configure window
         self.title("Instruments Operation Control")
-        self.geometry(f"{1250}x{1150}")  # {width}x{height}
+        self.geometry(f"{1650}x{1150}")  # {width}x{height}
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
         # --------------------------------------------------Side Bar----------------------------------------------------
@@ -448,7 +448,7 @@ class App(customtkinter.CTk):
 
         # --------------------------------------- Core Widget - Main Frame ---------------------------------------------
         # Create the Core Main Frame with widgets
-        self.main_frame = customtkinter.CTkScrollableFrame(self, height=400, width=700, corner_radius=0)
+        self.main_frame = customtkinter.CTkScrollableFrame(self, height=400, width=900, corner_radius=0)
         self.main_frame.grid(row=1, column=1, padx=(20, 20), pady=(20, 0), sticky="W")
         # Main Frame --> Generate Individual Frame Data for each GPIB
         # "group_data" refer to all the data which will be completed and will be sent to the GPIBs
@@ -485,7 +485,7 @@ class App(customtkinter.CTk):
     # ----------------------------------This Generates the GPIB Group Frames--------------------------------------------
     def generate_group_frame(self):
         # Group Frame which includes GPIBs
-        self.group_frame = customtkinter.CTkFrame(self.main_frame, width=120, corner_radius=0)
+        self.group_frame = customtkinter.CTkFrame(self.main_frame, width=250, corner_radius=0)
         self.group_frame.grid(row=2, column=2, padx=(20, 20), pady=(20, 20), sticky="W", columnspan=2)
         self.group_frame.grid_rowconfigure(1, weight=1)
         self.group_data_tk = []
@@ -668,6 +668,7 @@ class App(customtkinter.CTk):
         return updated_group_data
 
     def measure_event(self):
+        self.openNewWindow()
         self.repetition_num = self.entry_button_entry.get()
         # print("Repetition Number:", self.repetition_num )
         self.group_data = self.update_instruments_functional_values_event()
@@ -826,7 +827,7 @@ class App(customtkinter.CTk):
 if __name__ == "__main__":
     app = App()
     count = 0
-    app.bind("<MouseWheel>", MouseWheelHandler)
-    app.bind("<Button-4>", MouseWheelHandler)
-    app.bind("<Button-5>", MouseWheelHandler)
+    # app.bind("<MouseWheel>", MouseWheelHandler)
+    # app.bind("<Button-4>", MouseWheelHandler)
+    # app.bind("<Button-5>", MouseWheelHandler)
     app.mainloop()
